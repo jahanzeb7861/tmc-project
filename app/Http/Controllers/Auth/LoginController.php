@@ -24,7 +24,51 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login');
+
+        $menuItems = [
+            [
+                'label' => 'About Mominabad',
+                'url' => '/about',
+                'subItems' => [
+                    ['label' => 'About Us', 'url' => '/about'],
+                    ['label' => 'Chairman Message', 'url' => '/message'],
+                    ['label' => 'Vision and Mission Statement', 'url' => '/message'],
+                    ['label' => 'Union Councils List', 'url' => '/message'],
+                    ['label' => 'Staff', 'url' => '/message'],
+                    ['label' => 'Functions', 'url' => '/message'],
+                ]
+            ],
+            [
+                'label' => 'Services',
+                'url' => '/services',
+                'subItems' => [
+                    ['label' => 'Schools', 'url' => '/schools'],
+                    ['label' => 'Dispensaries / Maternity Homes', 'url' => '/details/dispensaries-maternity-homes'],
+                    ['label' => 'Community Centers', 'url' => '/details/list-of-community-center-in-tmc-mominabad'],
+                    ['label' => 'Libraries', 'url' => '/details/library'],
+                    ['label' => 'Apply for Trade License', 'url' => '/trade'],
+                ]
+            ],
+            [
+                'label' => 'News & Media',
+                'url' => '/',
+                'subItems' => [
+                    ['label' => 'Press Release', 'url' => '/publication'],
+                    ['label' => 'Events', 'url' => '/events'],
+                    ['label' => 'Video Gallery', 'url' => '/vgallery'],
+                    ['label' => 'Procurement', 'url' => '/'],
+                ]
+            ],
+            [
+                'label' => 'Contact Us',
+                'url' => '/contact',
+                'subItems' => [
+                    ['label' => 'Complaint # 1339', 'url' => 'https://1339.gos.pk/'],
+                ]
+            ],
+        ];
+
+        return view('auth.login', compact('menuItems'));
     }
 
     public function login(Request $request)
@@ -38,7 +82,7 @@ class LoginController extends Controller
 
         // Attempt to log in
         if (Auth::attempt($credentials)) {
-            $user = Auth::user(); 
+            $user = Auth::user();
             // Check if the user has the desired role
             if ($user->role === 'admin') {
                 return redirect()->intended('/admin/');

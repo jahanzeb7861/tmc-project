@@ -28,7 +28,50 @@ class HomeController extends Controller
         $banner = banner::where('id', 1)->first(); // Note: I corrected 'banner' to 'Banner'
         $BannerPost = Post::with('postMedia')->where('id', $banner->post)->first();
 
-        return view('fronts.home', compact('posts', 'BannerPost'));
+        $menuItems = [
+            [
+                'label' => 'About Mominabad',
+                'url' => '/page/about',
+                'subItems' => [
+                    ['label' => 'About Us', 'url' => '/page/about'],
+                    ['label' => 'Chairman Message', 'url' => '/page/message'],
+                    ['label' => 'Vision and Mission Statement', 'url' => '/page/vision'],
+                    ['label' => 'Union Councils List', 'url' => '/page/organogram'],
+                    ['label' => 'Staff', 'url' => '/'],
+                    ['label' => 'Functions', 'url' => '/'],
+                ]
+            ],
+            [
+                'label' => 'Services',
+                'url' => '/page/services',
+                'subItems' => [
+                    ['label' => 'Schools', 'url' => '/page/schools'],
+                    ['label' => 'Dispensaries / Maternity Homes', 'url' => '/page/details/dispensaries-maternity-homes'],
+                    ['label' => 'Community Centers', 'url' => '/page/details/list-of-community-center-in-tmc-mominabad'],
+                    ['label' => 'Libraries', 'url' => '/page/details/library'],
+                    ['label' => 'Apply for Trade License', 'url' => '/page/trade'],
+                ]
+            ],
+            [
+                'label' => 'News & Media',
+                'url' => '/',
+                'subItems' => [
+                    ['label' => 'Press Release', 'url' => '/page/publication'],
+                    ['label' => 'Events', 'url' => '/page/events'],
+                    ['label' => 'Video Gallery', 'url' => '/page/vgallery'],
+                    ['label' => 'Procurement', 'url' => '/'],
+                ]
+            ],
+            [
+                'label' => 'Contact Us',
+                'url' => '/page/contact',
+                'subItems' => [
+                    ['label' => 'Complaint # 1339', 'url' => 'https://1339.gos.pk/'],
+                ]
+            ],
+        ];
+
+        return view('fronts.home', compact('posts', 'BannerPost','menuItems'));
     }
     public function view_detail($slug)
     {

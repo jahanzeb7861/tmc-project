@@ -61,6 +61,7 @@
             vertical-align: bottom;
             margin-right: 5px;
         }
+
     </style>
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     {{-- @yield('styles') --}}
@@ -85,13 +86,13 @@
             <header class="header navbar navbar-expand-sm">
                 <ul class="navbar-item theme-brand flex-row  text-center">
                     @if ($websiteSettings->logo)
-                        <li class="nav-item theme-logo">
-                            <a href="{{ route('admin.dashboard.admin') }}">
-                                <img src="{{ asset('uploads/website/' . $websiteSettings->logo) }}"
-                                    style="width: 35px;object-fit:cover"
-                                    alt="{{ $websiteSettings->title ?? 'Website Title' }}">
-                            </a>
-                        </li>
+                    <li class="nav-item theme-logo">
+                        <a href="{{ route('admin.dashboard.admin') }}">
+                            <img src="{{ asset('uploads/website/' . $websiteSettings->logo) }}"
+                                style="width: 35px;object-fit:cover"
+                                alt="{{ $websiteSettings->title ?? 'Website Title' }}">
+                        </a>
+                    </li>
                     @endif
 
                     <li class="nav-item theme-text">
@@ -146,9 +147,9 @@
         <div class="sub-header-container">
             <header class="header navbar navbar-expand-sm">
                 <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-menu">
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-menu">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -189,9 +190,9 @@
                             <a href="{{ route('admin.dashboard.admin') }}" aria-expanded="false"
                                 class="dropdown-toggle">
                                 <div class="">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-home">
                                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                                     </svg>
@@ -200,6 +201,203 @@
                             </a>
                         </li>
 
+                        @if (isset($menuItems) && count($menuItems) > 0)
+                        <li class="menu">
+                            @foreach ($menuItems as $menuItem)
+                            <a href="#{{ $menuItem['id'] }}" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle collapsed">
+                                <div class="">
+                                    <i class="fa fa-navicon fa-solid"></i>
+                                    <span>{{ $menuItem['label'] }}</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </div>
+                            </a>
+                            <ul class="submenu list-unstyled collapse" id="{{ $menuItem['id'] }}"
+                                data-parent="#accordionExample">
+                                <li>
+                                    @if (isset($menuItem['subItems']) && count($menuItem['subItems']) > 0)
+                                    <ul class="submenu list-unstyled">
+                                        @foreach ($menuItem['subItems'] as $subItem)
+                                        <li>
+                                            <a href="{{ $subItem['url'] }}">{{ $subItem['label'] }}</a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                </li>
+                            </ul>
+                            @endforeach
+                        </li>
+                        @else
+                        <!-- ADD HERE STATIC -->
+                        <li class="menu">
+                            <a href="#about" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle collapsed">
+                                <div class="">
+                                    <i class="fa fa-navicon fa-solid"></i>
+                                    <span>About Mominabad</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </div>
+                            </a>
+                            <ul class="submenu list-unstyled collapse" id="about" data-parent="#accordionExample">
+                                <li>
+                                    <ul class="submenu list-unstyled">
+                                        <li>
+                                            <a href="/admin/page-edit/1">About Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/page-edit/2">Chairman Message</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/page-edit/3">Vision and Mission Statement</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/page-edit/4">Union Councils List</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/page-edit/5">Staff</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/page-edit/6">Functions</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <a href="#services" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle collapsed">
+                                <div class="">
+                                    <i class="fa fa-navicon fa-solid"></i>
+                                    <span>Services</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </div>
+                            </a>
+                            <ul class="submenu list-unstyled collapse" id="services" data-parent="#accordionExample">
+                                <li>
+                                    <ul class="submenu list-unstyled">
+                                        <li>
+                                            <a href="/admin/schools-edit">Schools</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/details/dispensaries-maternity-homes-edit">Dispensaries / Maternity
+                                                Homes</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/details/list-of-community-center-in-tmc-mominabad-edit">Community
+                                                Centers</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/details/library-edit">Libraries</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/trade-edit">Apply for Trade License</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <a href="#news" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle collapsed">
+                                <div class="">
+                                    <i class="fa fa-navicon fa-solid"></i>
+                                    <span>News &amp; Media</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </div>
+                            </a>
+                            <ul class="submenu list-unstyled collapse" id="news" data-parent="#accordionExample">
+                                <li>
+                                    <ul class="submenu list-unstyled">
+                                        <li>
+                                            <a href="/admin/page-edit/7">Press Release</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/page-edit/8">Events</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/page-edit/9">Image Gallery</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/page-edit/10">Video Gallery</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <a href="#procurement" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle collapsed">
+                                <div class="">
+                                    <i class="fa fa-navicon fa-solid"></i>
+                                    <span>Procurement</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </div>
+                            </a>
+                            <ul class="submenu list-unstyled collapse" id="procurement" data-parent="#accordionExample">
+                                <li>
+                                    <ul class="submenu list-unstyled">
+                                        <li>
+                                            <a href="/admin/page-edit/11">tenders</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/page-edit/12">auctions</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/page-edit/13">budget</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <a href="#contact" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle collapsed">
+                                <div class="">
+                                    <i class="fa fa-navicon fa-solid"></i>
+                                    <span>Contact Us</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </div>
+                            </a>
+                            <ul class="submenu list-unstyled collapse" id="contact" data-parent="#accordionExample">
+                                <li>
+                                    <ul class="submenu list-unstyled">
+                                        <li>
+                                            <a href="https://1339.gos.pk/">Complaint # 1339</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        @endif
 
                         <li class="menu">
                             <a href="#header" data-toggle="collapse" aria-expanded="false"
@@ -209,16 +407,14 @@
                                     <span>Header</span>
                                 </div>
                                 <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="feather feather-chevron-right">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
                                         <polyline points="9 18 15 12 9 6"></polyline>
                                     </svg>
                                 </div>
                             </a>
-                            <ul class="submenu list-unstyled collapse" id="header"
-                                data-parent="#accordionExample">
+                            <ul class="submenu list-unstyled collapse" id="header" data-parent="#accordionExample">
                                 <li>
                                     <a href="{{ route('admin.header-categories.list') }}">Manage Category </a>
                                 </li>
@@ -229,111 +425,104 @@
                             </ul>
                         </li>
                         @if (auth()->user()->role == 'admin')
-                            <li class="menu">
-                                <a href="{{ route('admin.aside-categories.list') }}" aria-expanded="false"
-                                    class="dropdown-toggle">
-                                    <div class="">
-                                        <i class="fa fa-list-alt fa-solid"></i>
-                                        <span>Aside</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="menu">
-                                <a href="{{ route('admin.events.list') }}" aria-expanded="false"
-                                    class="dropdown-toggle">
-                                    <div class="">
-                                        <i class="fa fa-solid fa-calendar"></i>
-                                        {{-- <i class="fa fa-users fa-solid"></i> --}}
-                                        <span>Events</span>
-                                    </div>
-                                </a>
-                            </li>
+                        <li class="menu">
+                            <a href="{{ route('admin.aside-categories.list') }}" aria-expanded="false"
+                                class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fa fa-list-alt fa-solid"></i>
+                                    <span>Aside</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a href="{{ route('admin.events.list') }}" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fa fa-solid fa-calendar"></i>
+                                    {{-- <i class="fa fa-users fa-solid"></i> --}}
+                                    <span>Events</span>
+                                </div>
+                            </a>
+                        </li>
 
-                            <li class="menu">
-                                <a href="{{ route('admin.banner.update-form') }}" aria-expanded="false"
-                                    class="dropdown-toggle">
-                                    <div class="">
-                                        <i class="fa fa-solid fa-table-cells-large"></i>
-                                        <span>Banner Setting</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="menu">
-                                <a href="{{ route('admin.anouncement.update-form') }}" aria-expanded="false"
-                                    class="dropdown-toggle">
-                                    <div class="">
-                                        <i class="fa fa-bullhorn fa-solid fas"></i>
-                                        <span>Anouncement</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="menu">
-                                <a href="{{ route('admin.listview.list') }}" aria-expanded="false"
-                                    class="dropdown-toggle">
-                                    <div class="">
-                                        <i class="fa-regular fa-file-pdf"></i>
-                                        <span>List View</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="menu">
-                                <a href="{{ route('admin.team.list') }}" aria-expanded="false"
-                                    class="dropdown-toggle">
-                                    <div class="">
-                                        <i class="fa fa-user-tie fa-solid"></i>
-                                        <span>Staff</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="menu">
-                                <a href="{{ route('admin.user.list') }}" aria-expanded="false"
-                                    class="dropdown-toggle">
-                                    <div class="">
-                                        <i class="fa fa-users fa-solid"></i>
-                                        <span>Users</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="menu">
-                                <a href="{{ route('admin.chairman.list') }}" aria-expanded="false"
-                                    class="dropdown-toggle">
-                                    <div class="">
-                                        <i class="fa-solid fa-user-tie"></i>
-                                        <span>Chairmans</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="menu">
-                                <a href="{{ route('admin.contact-problem.list') }}" aria-expanded="false"
-                                    class="dropdown-toggle">
-                                    <div class="">
-                                        <i class="fa-solid fa-exclamation"></i>
-                                        <span>Contact Problems</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="menu">
-                                <a href="{{ route('admin.contact.list') }}" aria-expanded="false"
-                                    class="dropdown-toggle">
-                                    <div class="">
-                                        <i class="fa-regular fa-id-card"></i>
-                                        <span>Contacts List</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="menu">
-                                <a href="{{ route('admin.web-settings.site-form') }}" aria-expanded="false"
-                                    class="dropdown-toggle">
-                                    <div class="">
-                                        <i class="fa fa-solid fa-sliders"></i>
-                                        <span>Site Settings</span>
-                                    </div>
-                                </a>
-                            </li>
+                        <li class="menu">
+                            <a href="{{ route('admin.banner.update-form') }}" aria-expanded="false"
+                                class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fa fa-solid fa-table-cells-large"></i>
+                                    <span>Banner Setting</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a href="{{ route('admin.anouncement.update-form') }}" aria-expanded="false"
+                                class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fa fa-bullhorn fa-solid fas"></i>
+                                    <span>Anouncement</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a href="{{ route('admin.listview.list') }}" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fa-regular fa-file-pdf"></i>
+                                    <span>List View</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a href="{{ route('admin.team.list') }}" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fa fa-user-tie fa-solid"></i>
+                                    <span>Staff</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a href="{{ route('admin.user.list') }}" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fa fa-users fa-solid"></i>
+                                    <span>Users</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a href="{{ route('admin.chairman.list') }}" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                    <span>Chairmans</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a href="{{ route('admin.contact-problem.list') }}" aria-expanded="false"
+                                class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fa-solid fa-exclamation"></i>
+                                    <span>Contact Problems</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a href="{{ route('admin.contact.list') }}" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fa-regular fa-id-card"></i>
+                                    <span>Contacts List</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a href="{{ route('admin.web-settings.site-form') }}" aria-expanded="false"
+                                class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fa fa-solid fa-sliders"></i>
+                                    <span>Site Settings</span>
+                                </div>
+                            </a>
+                        </li>
                         @endif
                         <li class="menu">
-                            <a href="{{ route('admin.profile.update') }}" aria-expanded="false"
-                                class="dropdown-toggle">
+                            <a href="{{ route('admin.profile.update') }}" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i class="fa fa-gear fa-solid"></i>
                                     <span>Profile Settings</span>
@@ -378,8 +567,7 @@
         </div>
         <!-- delete modal -->
         <!-- Modal -->
-        <div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div id="alert"></div>
@@ -410,9 +598,10 @@
         <script src="{{ asset('admin-assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
         <script src="{{ asset('admin-assets/js/app.js') }}"></script>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 App.init();
             });
+
         </script>
         <script src="{{ asset('admin-assets/js/custom.js') }}"></script>
         <!-- END GLOBAL MANDATORY SCRIPTS -->
@@ -427,7 +616,7 @@
 
         </script>
         <script>
-            jQuery(document).ready(function() {
+            jQuery(document).ready(function () {
 
                 // $('#summernote').summernote();
                 $('#zero-config').DataTable({
@@ -451,7 +640,7 @@
 
 
 
-                jQuery(document).on('click', '.delete-record', function() {
+                jQuery(document).on('click', '.delete-record', function () {
                     let route = $(this).attr('data-route');
                     $("#delete_route").val(route);
 
@@ -471,7 +660,7 @@
 
                 let url = removeLastTwoSegments(window.location.href);
 
-                jQuery('.menu-categories li.menu').each(function() {
+                jQuery('.menu-categories li.menu').each(function () {
                     if (removeLastTwoSegments(jQuery(this).find('a').attr('href')) == url) {
 
                         jQuery(this).find('a').attr("data-active", 'true');
@@ -490,8 +679,9 @@
                 // } else {
                 // If the URL doesn't have enough segments, return the original URL
                 return url;
-                // }    
+                // }
             }
+
         </script>
 
         @yield('scripts')

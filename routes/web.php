@@ -65,7 +65,7 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
         Route::get('category/update/{id}', [AsideCategoryController::class, 'viewUpdateForm'])->name('admin.aside-categories.update-form');
         Route::put('category/updates/{id}', [AsideCategoryController::class, 'update'])->name('admin.aside-categories.update');
 
-        // List Routes 
+        // List Routes
         Route::get('category/list', [AsideCategoryController::class, 'listIndex'])->name('admin.aside-categories.list');
         Route::get('category/sub-list/{id}', [AsideCategoryController::class, 'listIndex'])->name('admin.aside-sub-categories.list');
 
@@ -94,7 +94,7 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
         Route::get('category/update/{id}', [HeaderController::class, 'viewUpdateForm'])->name('admin.header-categories.update-form');
         Route::put('category/updates/{id}', [HeaderController::class, 'update'])->name('admin.header-categories.update');
 
-        // List Routes 
+        // List Routes
         Route::get('category/list', [HeaderController::class, 'viewList'])->name('admin.header-categories.list');
         Route::get('category/sub-list/{id}', [HeaderController::class, 'viewList'])->name('admin.header-sub-categories.list');
 
@@ -116,6 +116,12 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
             Route::delete('destory/{id}', [PostController::class, 'destory'])->name('admin.post.delete');
         });
     });
+
+    // HEADER PAGES SECTION
+    Route::get('/page-edit/{id}', [WebsiteController::class, 'viewPage'])->name('admin.header-pages.page-edit');
+    // Route::get('/about-edit/{id}', [WebsiteController::class, 'viewAboutPage'])->name('admin.header-pages.about-edit');
+    Route::post('update-about-page/{id}', [WebsiteController::class, 'updateAboutPage'])->name('admin.header-pages.about-update');
+
 
     Route::group(['prefix' => "settings", 'middleware' => 'admin'], function () {
         Route::get('/site', [WebsiteController::class, 'view_settings'])->name('admin.web-settings.site-form');
@@ -210,6 +216,9 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
 });
 
 
+Route::get('/page/{slug}', [WebsiteController::class, 'view_page'])->name('fronts.header-pages');
+
+
 Route::get('/about', function () {
     return view("fronts.about");
 });
@@ -221,7 +230,7 @@ Route::get('/listview',  [HomeController::class, 'list_view'])->name('fronts.lis
 Route::get('/head-of-department',  [HomeController::class, 'view_staff'])->name('fronts.staff-view');
 
 Route::get('/organogram',  [HomeController::class, 'view_chairmans'])->name('fronts.chairman');
- 
+
 Route::post('/search-post', [BannerController::class, 'fetchPost'])->name('admin.banner.search');
 // Route::get('/update-titles', [PostController::class, 'decode_post_title']);
 Route::get('/events', function () {

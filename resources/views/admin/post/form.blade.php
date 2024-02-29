@@ -241,7 +241,7 @@
         })
         jQuery(document).on('click', '.new-faq', function() {
             let html = `
-            <div class="faq-main"> 
+            <div class="faq-main">
                  <div class="faq-question">
                      <input placeholder="Question" class="form-control" name="question[]" type="text">
                      <button type='button' class="btn btn-danger btn-sm px-2  py-1 remove-faq" > <i class="fas fa-trash  pt-1 fa fa-solid fa-2x"></i> </button>

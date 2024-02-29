@@ -68,33 +68,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
 
 </head>
 
 <body>
     <style>
-    *{
-        font-family: 'Roboto', sans-serif !important;
-    }
-    .nav-menu,.news-item {
-    background-color: #F5F0F0 !important;
-    border:none !important;
-  
-        
-    }
-    button.nav__button {
-    color: #22574D!important;
-    
-}
-  button.nav__button:hover {
-     background-color: #22574D!important;
-     color:#F5F0F0 !important;
-}
-a.nav__button:hover {
-     background-color: #22574D!important;
-     color:#F5F0F0 !important;
-}
+        * {
+            font-family: 'Roboto', sans-serif !important;
+        }
+
+        .nav-menu,
+        .news-item {
+            background-color: #F5F0F0 !important;
+            border: none !important;
+
+
+        }
+
+        button.nav__button {
+            color: #22574D !important;
+
+        }
+
+        button.nav__button:hover {
+            background-color: #22574D !important;
+            color: #F5F0F0 !important;
+        }
+
+        a.nav__button:hover {
+            background-color: #22574D !important;
+            color: #F5F0F0 !important;
+        }
 
         #logo {
             margin: 0 !important;
@@ -108,11 +113,11 @@ a.nav__button:hover {
         .nav__button {
             width: fit-content;
             font-size: 14px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    align-self: stretch;
-    text-decoration: none;
-    text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: .1em;
+            align-self: stretch;
+            text-decoration: none;
+            text-transform: uppercase;
         }
 
         .panel-child a {
@@ -178,10 +183,11 @@ a.nav__button:hover {
             padding: 5px;
             cursor: pointer;
             color: white;
-                border:none;
+            border: none;
             list-style: none !important;
             text-decoration: none;
         }
+
         .news-item:hover {
             background-color: #22574D;
             color: #fff;
@@ -195,118 +201,147 @@ a.nav__button:hover {
         .news-menu {
             display: none;
             position: absolute;
-            z-index:999;
-            border:solid 1px;
+            z-index: 999;
+            border: solid 1px;
             background-color: white;
-                border: none;
+            border: none;
         }
 
         .news-item:hover .news-menu {
             display: flex;
-             color:#22574D; !important;
+            color: #22574D;
+             !important;
             flex-direction: column;
         }
+
         ul.news-menu {
             padding-left: 0;
             margin-left: 0;
             margin-top: 17px;
         }
+
         .mega-menu--active {
             max-height: 45vh !important;
         }
+
         .d-flex.align-items-center {
             margin-left: 20px !important;
         }
+
         a.nav__button.click {
             margin-top: 2px;
         }
+
         .mega-menu__sub-title {
             display: none;
         }
+
         a.itemss {
             color: black !important;
             font-size: 14px;
         }
+
         li.news-item:hover {
-            background:#22574D !important;
-              
+            background: #22574D !important;
+
         }
-        a.itemss:hover{
-             color:#F5F0F0 !important;
+
+        a.itemss:hover {
+            color: #F5F0F0 !important;
         }
-        a.panel-card.panel-card-btn.text-center{
-            background:#FFFFFF;
-            border:none !important;
-          
+
+        a.panel-card.panel-card-btn.text-center {
+            background: #FFFFFF;
+            border: none !important;
+
         }
+
         .panel-card--text.text-white.text-center {
             color: black !important;
         }
-        .news-item a{
-            color:#22574D;
+
+        .news-item a {
+            color: #22574D;
         }
-        .searchtext{
-            font-size:14px;
+
+        .searchtext {
+            font-size: 14px;
             margin-left: 10px;
-    margin-top: 30px;
-            font-weight:700;
-          
+            margin-top: 30px;
+            font-weight: 700;
+
         }
-/*        .d-flex.align-items-center {*/
-/*    margin-bottom: 9px;*/
-/*}*/
-        button.text-center.search-text{
-              color:#22574D;
+
+        /*        .d-flex.align-items-center {*/
+        /*    margin-bottom: 9px;*/
+        /*}*/
+        button.text-center.search-text {
+            color: #22574D;
         }
+
         .logo-div .navbar-brand {
             background: #f5f0f0 !important;
         }
-        .container-header{
-            padding-right:40px;
+
+        .container-header {
+            padding-right: 40px;
         }
+
         h5#exampleModalLabel {
             color: #22574D !important;
         }
+
         button#search-post-btn {
             background: #22574D !important;
         }
+
         li.news-item-main:hover {
             background: #f5f0f0 !important;
         }
-        li.news-item:hover > a.itemss {
+
+        li.news-item:hover>a.itemss {
             color: #fff !important;
         }
-        .panel-card:hover{
+
+        .panel-card:hover {
             border: 2px solid #22574d !important;
         }
+
         div#social-sticky {
             position: fixed;
             top: 38%;
             right: -36px;
             z-index: 999;
         }
+
         img.social-icon {
             width: 24px;
         }
+
         h1.logo-heading {
-    font-weight: 600;
-        margin-top: 30px;
-    margin-left: inherit;
-    font-size: 16px;
-}
-.header__nav.w-100 {
-    margin-top: 3px;
-}
-.panel-card--icon{
-    display: none;
-}
-ul.search-list {
-    position: absolute;
-    top: 60px;
-}
-img.social-icon {
-    width: 30px !important;
-}
+            font-weight: 600;
+            margin-top: 30px;
+            margin-left: inherit;
+            font-size: 16px;
+        }
+
+        .header__nav.w-100 {
+            margin-top: 3px;
+        }
+
+        .panel-card--icon {
+            display: none;
+        }
+
+        ul.search-list {
+            position: absolute;
+            top: 60px;
+        }
+
+        img.social-icon {
+            width: 30px !important;
+        }
+
     </style>
     <div id="app">
         <header class="nav-menu ">
@@ -319,119 +354,134 @@ img.social-icon {
                                 <a class="navbar-brand d-flex align-items-center" href="{{ route('fronts.home') }}">
                                     <img src="{{ asset('uploads/website/' . $websiteSettings->logo) }}"
                                         alt="{{ $websiteSettings->title ?? 'Website Title' }}" class="logo">
-                                        <h1 class="logo-heading">TMC MOMINABAD
-</h1>
+                                    <h1 class="logo-heading">TMC MOMINABAD
+                                    </h1>
                                 </a>
                             </div>
                             @endif
                             <div class="nav-menu  menu-links mx-auto w-auto">
+
+                            @if (isset($menuItems) && count($menuItems) > 0)
                                 <div class="header__nav w-100">
-                                    <!--@foreach ($menus as $menu)-->
-                                    <!--<button class="nav__button" data-slug="{{ $menu['slug'] }}">{{ $menu['title']}}</button>-->
-                                    <!--@endforeach-->
-                                    
-                                    <!--@foreach ($menus as $menu)-->
-                                    <!--<ul class="nawsdrop">-->
-                                    <!--    <li class="news-item news-item-main">-->
-                                    <!--        <a class="nav__button" href="#">{{ $menu['title']}}</a>-->
-                                    <!--        <ul class="news-menu">-->
-                                            <!--@foreach ($menu['submenu'] as $subMenu)-->
-                                                
-                                    <!--            @if (!empty($subMenu['post']))-->
-                                    <!--            @foreach ($subMenu['post'] as $post)-->
-                                    <!--            <li class="news-item">-->
-                                    <!--                <a class="itemss"-->
-                                    <!--                    href="{{ route('fronts.detail-view', ['slug' => $post['slug']]) }}">-->
-                                    <!--                    {{ $post['title'] }}-->
-                                    <!--                </a>-->
-                                    <!--            </li>-->
-                                    <!--            @endforeach-->
-                                    <!--            @endif-->
-                                            <!--@endforeach-->
-                                    <!--        </ul>-->
-                                    <!--    </li>-->
-                                    <!--</ul>-->
-                                    <!--@endforeach-->
-                                    
+                                    @foreach ($menuItems as $menuItem)
                                     <ul class="nawsdrop">
                                         <li class="news-item news-item-main">
-                                            <a class="nav__button" href="https://tmcmominabad.gos.pk/about">ABOUT MOMINABAD</a>
-                                            <ul class="news-menu" style="
-    width: 230px;
-">
-                                                <li class="news-item"><a class="itemss"  href="/about">About Us</a></li>   
-                                                <li class="news-item"><a class="itemss"  href="/message">Chairman's Message</a></li>
-                                                <li class="news-item"><a class="itemss" class="itemss" href="/vision">Vision & Mission Statement</a></li>
-                                                <li class="news-item"><a class="itemss"  href="/organogram">Union Councils List</a></li>
-                                                <li class="news-item"><a class="itemss" class="itemss" href="/management">Staff</a></li>
-                                                <li class="news-item"><a class="itemss" class="itemss" href="/functions">Functions</a></li>
-                                                <!--<li class="news-item"><a class="itemss"  href="/trade">Trade License</a></li>   -->
+                                            <a class="nav__button"
+                                                href="{{ $menuItem['url'] }}">{{ $menuItem['label'] }}</a>
+                                            @if (isset($menuItem['subItems']) && count($menuItem['subItems']) > 0)
+                                            <ul class="news-menu" style="width: 230px;">
+                                                @foreach ($menuItem['subItems'] as $subItem)
+                                                <li class="news-item">
+                                                    <a class="itemss"
+                                                        href="{{ $subItem['url'] }}">{{ $subItem['label'] }}</a>
+                                                </li>
+                                                @endforeach
                                             </ul>
+                                            @endif
                                         </li>
                                     </ul>
-                                    
+                                    @endforeach
+                                </div>
+                            @else
+
+
+                                <div class="header__nav w-100">
                                     <ul class="nawsdrop">
                                         <li class="news-item news-item-main">
-                                            <a class="nav__button" href="https://tmcmominabad.gos.pk/about">Services</a>
+                                            <a class="nav__button" href="/page/about">ABOUT
+                                                MOMINABAD</a>
                                             <ul class="news-menu" style="
     width: 230px;
 ">
-                                                <li class="news-item"><a class="itemss"  href="https://tmcmominabad.gos.pk/details/schools">Schools</a></li>  
-                                                <li class="news-item"><a class="itemss"  href="https://tmcmominabad.gos.pk/details/dispensaries-maternity-homes">Dispensaries / Maternity Homes</a></li>
-                                                <li class="news-item"><a class="itemss"  href="https://tmcmominabad.gos.pk/details/list-of-community-center-in-tmc-mominabad">Community Centers</a></li>
-                                                <li class="news-item"><a class="itemss"  href="https://tmcmominabad.gos.pk/details/library">Libraries</a></li>
-                                                <li class="news-item"><a class="itemss" href="/trade">Apply for Trade License</a></li>
-                                                
+                                                <li class="news-item"><a class="itemss" href="/page/about">About Us</a></li>
+                                                <li class="news-item"><a class="itemss" href="/page/message">Chairman's
+                                                        Message</a></li>
+                                                <li class="news-item"><a class="itemss" class="itemss"
+                                                        href="/page/vision">Vision & Mission Statement</a></li>
+                                                <li class="news-item"><a class="itemss" href="/page/organogram">Union
+                                                        Councils List</a></li>
+                                                <li class="news-item"><a class="itemss" class="itemss"
+                                                        href="/page/management">Staff</a></li>
+                                                <li class="news-item"><a class="itemss" class="itemss"
+                                                        href="/page/functions">Functions</a></li>
                                             </ul>
                                         </li>
                                     </ul>
 
                                     <ul class="nawsdrop">
                                         <li class="news-item news-item-main">
-                                           <a class="nav__button" href="/">News & Media</a> 
+                                            <a class="nav__button" href="/page/about">Services</a>
                                             <ul class="news-menu" style="
-    width: 155px;
+    width: 230px;
 ">
-                                                <li class="news-item"><a class="itemss" class="itemss" href="/publication">Press Release</a>
-                                                    <!--<ul>-->
-                                                    <!--    <li class="news-item"><a class="itemss"  href="https://tmcmominabad.gos.pk/details/council-meeting-with-vice-chairman">Council meeting with Vice Chairman</a></li>-->
-                                                    <!--        <li class="news-item"><a class="itemss"  href="https://tmcmominabad.gos.pk/details/town-council-meeting">Town Council Meeting</a></li>-->
-                                                    <!--        <li class="news-item"><a class="itemss"  href="https://tmcmominabad.gos.pk/details/approval-presented-town">Approval presented  town</a></li>-->
-                                                    <!--</ul>-->
+                                                <li class="news-item"><a class="itemss"
+                                                        href="/details/schools">Schools</a>
                                                 </li>
-                                                <li class="news-item"><a class="itemss" class="itemss" href="/events">Events</a></li>
-                                                <li class="news-item"><a class="itemss" class="itemss" href="/gallery">Image Gallery</a></li>
-                                                <!--<li class="news-item"><a class="itemss" class="itemss" href="/press">Press Releases</a></li>-->
-                                                <li class="news-item"><a class="itemss" href="/vgallery">Video Gallery</a></li>
+                                                <li class="news-item"><a class="itemss"
+                                                        href="/details/dispensaries-maternity-homes">Dispensaries
+                                                        / Maternity Homes</a></li>
+                                                <li class="news-item"><a class="itemss"
+                                                        href="/details/list-of-community-center-in-tmc-mominabad">Community
+                                                        Centers</a></li>
+                                                <li class="news-item"><a class="itemss"
+                                                        href="/details/library">Libraries</a>
+                                                </li>
+                                                <li class="news-item"><a class="itemss" href="/page/trade">Apply for Trade
+                                                        License</a></li>
+
                                             </ul>
                                         </li>
                                     </ul>
-                                             <ul class="nawsdrop">
+
+                                    <ul class="nawsdrop">
                                         <li class="news-item news-item-main">
-                                           <a class="nav__button" href="/">Procurement</a> 
+                                            <a class="nav__button" href="/">News & Media</a>
                                             <ul class="news-menu" style="
-    width: 140px;
+    width: 155px;
 ">
-                                                <li class="news-item"><a class="itemss" href="/tenders">Tenders</a></li>
-                                                <li class="news-item"><a class="itemss" href="/auctions">Auctions</a></li>
-                                                <li class="news-item"><a class="itemss" href="/budget">Budget books</a></li>
-                                                
+                                                <li class="news-item"><a class="itemss" class="itemss"
+                                                        href="/page/publication">Press Release</a>
+                                                </li>
+                                                <li class="news-item"><a class="itemss" class="itemss"
+                                                        href="/page/events">Events</a></li>
+                                                <li class="news-item"><a class="itemss" class="itemss"
+                                                        href="/page/gallery">Image Gallery</a></li>
+                                                <li class="news-item"><a class="itemss" href="/page/vgallery">Video
+                                                        Gallery</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                     <ul class="nawsdrop">
                                         <li class="news-item news-item-main">
-                                            <a class="nav__button" href='/contact'>Contact Us</a>
-                                                <ul class="news-menu" >
-                                                <li class="news-item" style="
-    width: 138px;
-"><a class="itemss" target="_blank" href="https://1339.gos.pk/">Complaint # 1339</a></li>
-                                               
+                                            <a class="nav__button" href="/">Procurement</a>
+                                            <ul class="news-menu" style="
+    width: 140px;
+">
+                                                <li class="news-item"><a class="itemss" href="/page/tenders">Tenders</a></li>
+                                                <li class="news-item"><a class="itemss" href="/page/auctions">Auctions</a>
+                                                </li>
+                                                <li class="news-item"><a class="itemss" href="/page/budget">Budget books</a>
+                                                </li>
+
                                             </ul>
                                         </li>
                                     </ul>
-                                    <!--<a class="nav__button click" href='https://www.click.gos.pk/' target='_blank'>Click</a>-->
+                                    <ul class="nawsdrop">
+                                        <li class="news-item news-item-main">
+                                            <a class="nav__button" href='/page/contact'>Contact Us</a>
+                                            <ul class="news-menu">
+                                                <li class="news-item" style="
+    width: 138px;
+"><a class="itemss" target="_blank" href="https://1339.gos.pk/">Complaint # 1339</a></li>
+
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </div>
+
+                                @endif
+
+
 
                                 <!-- filter -->
                                 <div class="d-lg-none d-block filter-div">
@@ -580,13 +630,14 @@ img.social-icon {
                                         <!--<i class="bi bi-search "></i>-->
                                         <!--<span class="searchtext">SEARCH</span>-->
                                     </button>
-                                    
+
                                     <div class="d-flex align-items-center">
                                         <input type="text" id="search-post-input" placeholder="Search here..">
-                                        <button id='search-post-btn' class="main-btn"><i class="bi bi-search "></i></button>
+                                        <button id='search-post-btn' class="main-btn"><i
+                                                class="bi bi-search "></i></button>
                                     </div>
                                     <ul class="search-list">
-                
+
                                     </ul>
 
                                 </div>
@@ -836,38 +887,42 @@ img.social-icon {
                         <!--            <a href="/staff" class="">Staff</a>-->
                         <!--        </div>-->
 
-                                <!--<div class="mb-2">-->
-                                <!--    <a href="/listview" class="">List View</a>-->
-                                <!--</div>-->
+                        <!--<div class="mb-2">-->
+                        <!--    <a href="/listview" class="">List View</a>-->
+                        <!--</div>-->
 
                         <!--    </div>-->
                         <!--</div>-->
                         <div class="col-lg-4 mt-lg-0 mt-2">
                             <div class="footer-col">
                                 <div class="mb-2">
-                                   <h5>Related Links</h5>
-                                    <a href="https://lgdsindh.gov.pk/wp/" target='_blank'>Local Government Deparment (LGD)</a>
+                                    <h5>Related Links</h5>
+                                    <a href="https://lgdsindh.gov.pk/wp/" target='_blank'>Local Government Deparment
+                                        (LGD)</a>
                                 </div>
 
                                 <div class="mb-2">
-                                    <a href="http://sswmb.gos.pk/cms/" target='_blank'> Sindh Solid Waste Management Board (SSWMB)</a>
+                                    <a href="http://sswmb.gos.pk/cms/" target='_blank'> Sindh Solid Waste Management
+                                        Board (SSWMB)</a>
                                 </div>
 
                                 <div class="mb-2">
                                     <a href="https://www.fbr.gov.pk/" target='_blank'>Federal Board of Revenue (FBR)</a>
-                                     
+
                                 </div>
                                 <div class="mb-2">
                                     <a href="https://1339.gos.pk/" target='_blank'>Complaint # 1339</a>
                                 </div>
                                 <div class="mb-2">
-                                    <a href="https://click.gos.pk/"target='_blank'>CLICK</a>
+                                    <a href="https://click.gos.pk/" target='_blank'>CLICK</a>
                                 </div>
                                 <div class="mb-2">
-                                    <a href="https://click.gos.pk/"target='_blank'>Karachi Metropolitan Corporation (KMC)</a>
+                                    <a href="https://click.gos.pk/" target='_blank'>Karachi Metropolitan Corporation
+                                        (KMC)</a>
                                 </div>
                                 <div class="mb-2">
-                                    <a href="https://click.gos.pk/"target='_blank'>Karachi Development Authority (KDA)</a>
+                                    <a href="https://click.gos.pk/" target='_blank'>Karachi Development Authority
+                                        (KDA)</a>
                                 </div>
 
                                 <!--<div class="mb-2">-->
@@ -876,15 +931,15 @@ img.social-icon {
 
                             </div>
                         </div>
-                          <div class="col-lg-2 mt-lg-0 mt-2">
+                        <div class="col-lg-2 mt-lg-0 mt-2">
                             <div class="footer-col">
-                                 <h5>Useful Links</h5> 
-                                 <div class="mb-2">
+                                <h5>Useful Links</h5>
+                                <div class="mb-2">
 
-                                    <a href="/faqs"target='_blank'>FAQs</a>
+                                    <a href="/faqs" target='_blank'>FAQs</a>
                                 </div>
                                 <div class="mb-2">
-                                    <a href="/career"target='_blank'>Career</a>
+                                    <a href="/career" target='_blank'>Career</a>
                                 </div>
                                 <!--<div class="mb-2">-->
                                 <!--    <a href="/listview" class="">List View</a>-->
@@ -892,14 +947,16 @@ img.social-icon {
 
                             </div>
                         </div>
-                                     <div class="col-lg-3 mt-lg-0 mt-2 d-none">
+                        <div class="col-lg-3 mt-lg-0 mt-2 d-none">
                             <div class="footer-col">
-                                 <h5>Contact Detail</h5> 
-                                   <div class="mb-2">
-                                    <a href="tel:+923452154417"target='_blank'>Rashid Ansari Director Information Mominabad: +92 345 2154417</a>
+                                <h5>Contact Detail</h5>
+                                <div class="mb-2">
+                                    <a href="tel:+923452154417" target='_blank'>Rashid Ansari Director Information
+                                        Mominabad: +92 345 2154417</a>
                                 </div>
-                                   <div class="mb-2">
-                                    <a href="tel:+923139299666"target='_blank'>D.d Muhammad Tayyab Mominabad Town: +92 313 9299666</a>
+                                <div class="mb-2">
+                                    <a href="tel:+923139299666" target='_blank'>D.d Muhammad Tayyab Mominabad Town: +92
+                                        313 9299666</a>
                                 </div>
                             </div>
                         </div>
@@ -910,27 +967,27 @@ img.social-icon {
                                     <img src="assets/images/Facebook_icon.svg" alt="" class="me-2">
                                     <a href="{{ $websiteSettings->facebook_link }}">Facebook</a>
                                 </div>
-                               
-                                
+
+
                                 <div class="d-flex align-items-start mb-2">
                                     <img src="assets/images/Twitter_icon.svg" alt="" class="me-2">
                                     <a href="{{ $websiteSettings->twitter_link }}">Twitter</a>
                                 </div>
-                                
+
                                 <div class="d-flex align-items-start mb-2">
                                     <img src="assets/images/Instagram_icon.svg" alt="" class="me-2">
                                     <a href="{{ $websiteSettings->instagram_link }}">Instagram</a>
                                 </div>
-                                
-                                
+
+
                                 <div class="d-flex align-items-start mb-2">
                                     <img src="assets/images/Youtube_icon.svg" alt="" class="me-2">
                                     <a href="{{ $websiteSettings->youtube_link }}">Youtube</a>
                                 </div>
-                                
+
                             </div>
                         </div>
-                        
+
                         <div class="col-lg-1 mt-lg-0 mt-3">
                             <div class="footer-col">
                                 @if (!empty($websiteSettings->facebook_link))
@@ -965,50 +1022,50 @@ img.social-icon {
                                 @endif
                             </div>
                         </div>
-                        
+
                         <!--sticky social media-->
                         <div id="social-sticky" class="col-lg-1 mt-lg-0 mt-3">
                             <div class="footer-col">
-                
+
                                 <div class="d-flex align-items-center mb-2">
                                     <a href="#">
                                         <img src="assets/images/Facebook_icon.svg" alt="" class="me-2 social-icon">
                                     </a>
                                 </div>
-                                
+
                                 <div class="d-flex align-items-center mb-2">
                                     <a href="#">
                                         <img src="assets/images/Twitter_icon.svg" alt="" class="me-2 social-icon">
                                     </a>
                                 </div>
-                                
+
                                 <div class="d-flex align-items-center mb-2">
                                     <a href="#">
                                         <img src="assets/images/Linkedin_icon.svg" alt="" class="me-2 social-icon">
                                     </a>
                                 </div>
-                                
+
                                 <div class="d-flex align-items-center mb-2">
                                     <a href="#">
                                         <img src="assets/images/Youtube_icon.svg" alt="" class="me-2 social-icon">
                                     </a>
                                 </div>
-                                
+
                             </div>
                         </div>
-                        
+
                         <!--end sticky-->
-                        
-                <!--        <div class="col-lg-1 mt-lg-0 mt-3">-->
-                            <!-- <img src="assets/images/pngwing.com (5).png" alt="" class="img-fluid "
+
+                        <!--        <div class="col-lg-1 mt-lg-0 mt-3">-->
+                        <!-- <img src="assets/images/pngwing.com (5).png" alt="" class="img-fluid "
                 <!--                style="max-width: 100px;"> -->
-                <!--            <a id="logo" class="navbar-brand d-flex align-items-center text-center flex-column py-3 "-->
-                <!--                href="{{ route('fronts.home') }}">-->
-                <!--                <img src="{{ asset('uploads/website/' . $websiteSettings->logo) }}"-->
-                <!--                    alt="{{ $websiteSettings->name }}">-->
-                                <!-- TMC<br> Saddar -->
-                <!--            </a>-->
-                <!--        </div>-->
+                        <!--            <a id="logo" class="navbar-brand d-flex align-items-center text-center flex-column py-3 "-->
+                        <!--                href="{{ route('fronts.home') }}">-->
+                        <!--                <img src="{{ asset('uploads/website/' . $websiteSettings->logo) }}"-->
+                        <!--                    alt="{{ $websiteSettings->name }}">-->
+                        <!-- TMC<br> Saddar -->
+                        <!--            </a>-->
+                        <!--        </div>-->
                     </div>
                 </div>
                 <div class="col-lg-10 mx-auto">
@@ -1077,13 +1134,13 @@ img.social-icon {
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-        </script>
+    </script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script> -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
     </script>
@@ -1108,6 +1165,7 @@ img.social-icon {
             $(".mega-menu").removeClass("mega-menu--active");
             // $(".mega-menu").css("display", "none");
         });
+
     </script>
     <script>
         var acc = document.getElementsByClassName("accordian");
@@ -1140,6 +1198,7 @@ img.social-icon {
                 }
             });
         }
+
     </script>
     <script>
         var accChild = document.getElementsByClassName("accordian-child");
@@ -1173,6 +1232,7 @@ img.social-icon {
                 }
             });
         }
+
     </script>
     <script>
         var accM = document.getElementsByClassName("accordian-main");
@@ -1190,6 +1250,7 @@ img.social-icon {
             });
         }
         $(".accordian-main").click();
+
     </script>
     <script>
         // ============================================slider
@@ -1228,6 +1289,7 @@ img.social-icon {
                 carousels();
             })(jQuery);
         })();
+
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -1255,6 +1317,7 @@ img.social-icon {
                 });
             });
         });
+
     </script>
     <script>
         jQuery(document).on('click', '#search-post-btn', function () {
@@ -1283,21 +1346,23 @@ img.social-icon {
                             <li class="post-card ">
                                 <a href="/details/${element?.slug}">
                                 <img src='${asset_path}/${element?.post_media?.[0]?.file_name}' />
-                               
+
                                <h4 class='search-title'>${(element?.title)}</h4>
-                                </a>   
+                                </a>
                             </li>
                         `
                         });
                         $('.search-list').html(html)
                     } else {
-                        $('.search-list').html(`<li><p class="text-center">${data.message}</p></li>`)
+                        $('.search-list').html(
+                            `<li><p class="text-center">${data.message}</p></li>`)
                     }
                 }
             })
 
 
         })
+
     </script>
     @yield('script')
 
