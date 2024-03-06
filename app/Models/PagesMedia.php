@@ -12,7 +12,7 @@ class PagesMedia extends Model
     protected $fillable = [
         'file_name',
         'path',
-        'post_id',
+        'header_page_id',
         'type'
     ];
     public function header_pages()

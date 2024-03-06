@@ -25,6 +25,17 @@ class DashboardController extends Controller
                 'post' => $post
             ];
 
+           // Fetching services posts from the Post model
+            $servicesPosts = Post::get();
+
+            // Processing services posts to create subItems array
+            $servicesSubItems = [];
+            foreach ($servicesPosts as $post) {
+                $servicesSubItems[] = [
+                    'label' => $post->title,
+                    'url' => '/admin/post/update/' . $post->id,
+                ];
+            }
 
             $menuItems = [
                 [
@@ -32,11 +43,11 @@ class DashboardController extends Controller
                     'url' => '/admin/about',
                     'id' => 'about',
                     'subItems' => [
-                        ['label' => 'About Us', 'url' => '/admin/page-edit/1'],
+                        // ['label' => 'About Us', 'url' => '/admin/page-edit/1'],
                         ['label' => 'Chairman Message', 'url' => '/admin/page-edit/2'],
                         ['label' => 'Vision and Mission Statement', 'url' => '/admin/page-edit/3'],
-                        ['label' => 'Union Councils List', 'url' => '/admin/page-edit/4'],
-                        ['label' => 'Staff', 'url' => '/admin/page-edit/5'],
+                        ['label' => 'Union Councils List', 'url' => '/admin/union_council/list'],
+                        ['label' => 'Staff', 'url' => '/admin/staff/list'],
                         ['label' => 'Functions', 'url' => '/admin/page-edit/6'],
                     ]
                 ],
@@ -44,13 +55,15 @@ class DashboardController extends Controller
                     'label' => 'Services',
                     'url' => '/admin/services',
                     'id' => 'services',
-                    'subItems' => [
-                        ['label' => 'Schools', 'url' => '/admin/schools-edit'],
-                        ['label' => 'Dispensaries / Maternity Homes', 'url' => '/admin/details/dispensaries-maternity-homes-edit'],
-                        ['label' => 'Community Centers', 'url' => '/admin/details/list-of-community-center-in-tmc-mominabad-edit'],
-                        ['label' => 'Libraries', 'url' => '/admin/details/library-edit'],
-                        ['label' => 'Apply for Trade License', 'url' => '/admin/trade-edit'],
-                    ]
+                    'subItems' => $servicesSubItems
+
+                    // 'subItems' => [
+                    //     ['label' => 'Schools', 'url' => '/admin/schools-edit'],
+                    //     ['label' => 'Dispensaries / Maternity Homes', 'url' => '/admin/details/dispensaries-maternity-homes-edit'],
+                    //     ['label' => 'Community Centers', 'url' => '/admin/details/list-of-community-center-in-tmc-mominabad-edit'],
+                    //     ['label' => 'Libraries', 'url' => '/admin/details/library-edit'],
+                    //     ['label' => 'Apply for Trade License', 'url' => '/admin/trade-edit'],
+                    // ]
                 ],
                 [
                     'label' => 'News & Media',
@@ -84,7 +97,7 @@ class DashboardController extends Controller
             ];
 
 
-            return view('admin.dashboard.admin', compact(['data','menuItems']));
+            return view('admin.dashboard.admin', compact(['data','menuItems','servicesSubItems']));
         } else {
             return view('fronts.home');
         }

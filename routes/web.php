@@ -13,7 +13,9 @@ use App\Http\Controllers\AdminController\HeaderController;
 use App\Http\Controllers\AdminController\ListPdfController;
 use App\Http\Controllers\AdminController\PostController;
 use App\Http\Controllers\AdminController\ProfileController;
+use App\Http\Controllers\AdminController\StaffController;
 use App\Http\Controllers\AdminController\TeamController;
+use App\Http\Controllers\AdminController\UnionCouncilController;
 use App\Http\Controllers\AdminController\UsersController;
 use App\Http\Controllers\AdminController\WebsiteController;
 use App\Http\Controllers\Auth\LoginController;
@@ -213,6 +215,33 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
 
         Route::delete('destroy/{id}', [ChairmanController::class, 'destroy'])->name('admin.chairman.delete');
     });
+
+
+    // TABLES PAGES
+    Route::group(['prefix' => "union_council", 'middleware' => 'admin'], function () {
+        Route::get('/create', [UnionCouncilController::class, 'viewForm'])->name('admin.union_council.create-form');
+        Route::post('/create', [UnionCouncilController::class, 'store'])->name('admin.union_council.create');
+
+        Route::get('/list', [UnionCouncilController::class, 'index'])->name('admin.union_council.list');
+
+        Route::get('/update/{id}', [UnionCouncilController::class, 'viewForm'])->name('admin.union_council.update-form');
+        Route::put('/update/{id}', [UnionCouncilController::class, 'update'])->name('admin.union_council.update');
+
+        Route::delete('destroy/{id}', [UnionCouncilController::class, 'destroy'])->name('admin.union_council.delete');
+    });
+
+    Route::group(['prefix' => "staff", 'middleware' => 'admin'], function () {
+        Route::get('/create', [StaffController::class, 'viewForm'])->name('admin.staff.create-form');
+        Route::post('/create', [StaffController::class, 'store'])->name('admin.staff.create');
+
+        Route::get('/list', [StaffController::class, 'index'])->name('admin.staff.list');
+
+        Route::get('/update/{id}', [StaffController::class, 'viewForm'])->name('admin.staff.update-form');
+        Route::put('/update/{id}', [StaffController::class, 'update'])->name('admin.staff.update');
+
+        Route::delete('destroy/{id}', [StaffController::class, 'destroy'])->name('admin.staff.delete');
+    });
+
 });
 
 

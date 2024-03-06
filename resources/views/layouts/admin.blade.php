@@ -254,9 +254,9 @@
                             <ul class="submenu list-unstyled collapse" id="about" data-parent="#accordionExample">
                                 <li>
                                     <ul class="submenu list-unstyled">
-                                        <li>
+                                        <!-- <li>
                                             <a href="/admin/page-edit/1">About Us</a>
-                                        </li>
+                                        </li> -->
                                         <li>
                                             <a href="/admin/page-edit/2">Chairman Message</a>
                                         </li>
@@ -264,10 +264,10 @@
                                             <a href="/admin/page-edit/3">Vision and Mission Statement</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/page-edit/4">Union Councils List</a>
+                                            <a href="/admin/union_council/list">Union Councils List</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/page-edit/5">Staff</a>
+                                            <a href="/admin/staff/list">Staff</a>
                                         </li>
                                         <li>
                                             <a href="/admin/page-edit/6">Functions</a>
@@ -293,21 +293,28 @@
                                 <li>
                                     <ul class="submenu list-unstyled">
                                         <li>
-                                            <a href="/admin/schools-edit">Schools</a>
+                                            <a href="/admin/post/update/3">Schools</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/details/dispensaries-maternity-homes-edit">Dispensaries / Maternity
-                                                Homes</a>
+                                            <a href="/admin/post/update/26">Dispensaries / Maternity Homes</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/details/list-of-community-center-in-tmc-mominabad-edit">Community
-                                                Centers</a>
+                                            <a href="/admin/post/update/27">Community Centers</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/details/library-edit">Libraries</a>
+                                            <a href="/admin/post/update/28">Librarys</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/trade-edit">Apply for Trade License</a>
+                                            <a href="/admin/post/update/29">Hostpitals</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/post/update/30">Shelter Homes</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/post/update/31">Animal Shelters</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/post/update/33">Parks And Playgrounds</a>
                                         </li>
                                     </ul>
                                 </li>

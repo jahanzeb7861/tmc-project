@@ -28,12 +28,26 @@ class HomeController extends Controller
         $banner = banner::where('id', 1)->first(); // Note: I corrected 'banner' to 'Banner'
         $BannerPost = Post::with('postMedia')->where('id', $banner->post)->first();
 
+
+        // Fetching services posts from the Post model
+        $servicesPosts = Post::get();
+
+        // Processing services posts to create subItems array
+        $servicesSubItems = [];
+        foreach ($servicesPosts as $post) {
+            $servicesSubItems[] = [
+                'label' => $post->title,
+                'url' => '/details/' . $post->slug,
+            ];
+        }
+
+
         $menuItems = [
             [
                 'label' => 'About Mominabad',
-                'url' => '/page/about',
+                'url' => '/about',
                 'subItems' => [
-                    ['label' => 'About Us', 'url' => '/page/about'],
+                    ['label' => 'About Us', 'url' => '/about'],
                     ['label' => 'Chairman Message', 'url' => '/page/message'],
                     ['label' => 'Vision and Mission Statement', 'url' => '/page/vision'],
                     ['label' => 'Union Councils List', 'url' => '/page/organogram'],
@@ -44,13 +58,14 @@ class HomeController extends Controller
             [
                 'label' => 'Services',
                 'url' => '/page/services',
-                'subItems' => [
-                    ['label' => 'Schools', 'url' => '/page/schools'],
-                    ['label' => 'Dispensaries / Maternity Homes', 'url' => '/page/details/dispensaries-maternity-homes'],
-                    ['label' => 'Community Centers', 'url' => '/page/details/list-of-community-center-in-tmc-mominabad'],
-                    ['label' => 'Libraries', 'url' => '/page/details/library'],
-                    ['label' => 'Apply for Trade License', 'url' => '/page/trade'],
-                ]
+                'subItems' => $servicesSubItems
+                // 'subItems' => [
+                //     ['label' => 'Schools', 'url' => '/page/schools'],
+                //     ['label' => 'Dispensaries / Maternity Homes', 'url' => '/page/details/dispensaries-maternity-homes'],
+                //     ['label' => 'Community Centers', 'url' => '/page/details/list-of-community-center-in-tmc-mominabad'],
+                //     ['label' => 'Libraries', 'url' => '/page/details/library'],
+                //     ['label' => 'Apply for Trade License', 'url' => '/page/trade'],
+                // ]
             ],
             [
                 'label' => 'News & Media',

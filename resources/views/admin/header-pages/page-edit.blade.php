@@ -38,7 +38,7 @@
                             <input type="hidden" name="id" value="{{ @$data->id }}">
 
                             <div class="row">
-                                <!-- <div class="col-md-12">
+                                <div class="col-md-12">
                                     <div class="custom-file-container" data-upload-id="mySecondImage">
                                         <label>Upload (Allow Multiple)
                                             <a href="javascript:void(0)" class="custom-file-container__image-clear"
@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                </div> -->
+                                </div>
 
                                 <!-- <div class="col-md-12 mt-3">
                                     <div class="form-group">
@@ -229,17 +229,17 @@
 </script>
 <script src="{{ asset('admin-assets/plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
 <script>
-    jQuery(document).on('change', '.is_faq', function () {
-        let value = $(this).is(':checked');
-        if (value) {
-            jQuery(".faq-sec").show(500)
-        } else {
-            jQuery(".faq-sec").hide(500)
+        jQuery(document).on('change', '.is_faq', function() {
+            let value = $(this).is(':checked');
+            if (value) {
+                jQuery(".faq-sec").show(500)
+            } else {
+                jQuery(".faq-sec").hide(500)
 
-        }
-    })
-    jQuery(document).on('click', '.new-faq', function () {
-        let html = `
+            }
+        })
+        jQuery(document).on('click', '.new-faq', function() {
+            let html = `
             <div class="faq-main">
                  <div class="faq-question">
                      <input placeholder="Question" class="form-control" name="question[]" type="text">
@@ -250,99 +250,91 @@
                  </div>
              </div>
             `;
-        jQuery('.faq-sec').prepend(html)
-    })
-    jQuery(document).on('click', '.remove-faq', function () {
-        jQuery(this).parent().parent().hide(500);
-        setTimeout(() => {
-            jQuery(this).parent().parent().remove();
-        }, 600);
-    })
-    $(document).on('change', '#language', function () {
+            jQuery('.faq-sec').prepend(html)
+        })
+        jQuery(document).on('click', '.remove-faq', function() {
+            jQuery(this).parent().parent().hide(500);
+            setTimeout(() => {
+                jQuery(this).parent().parent().remove();
+            }, 600);
+        })
+        $(document).on('change', '#language', function() {
 
-        if ($(this).val() == 'urdu') {
+            if ($(this).val() == 'urdu') {
 
-            $('#addform').attr('dir', 'rtl')
-        } else {
+                $('#addform').attr('dir', 'rtl')
+            } else {
 
-            $('#addform').attr('dir', 'ltr')
-        }
-    })
+                $('#addform').attr('dir', 'ltr')
+            }
+        })
 
-    $(document).on('click', '.remove-file', function () {
-        let id = $(this).attr('data-id');
-        $('.remove-media-list').append(
-            `<input type="hidden" name="removeMedia[]" value='${id}' id="removed-file-${id}">`);
-        $(`.media-${id}`).addClass('removed-mediaa');
-    })
-    $(document).on('click', '.restore-media', function () {
-        let id = $(this).attr('data-id');
-        $(`#removed-file-${id}`).remove();
-        $(`.media-${id}`).removeClass('removed-mediaa');
-    })
-
-
-    jQuery(document).on('change', '#image', function (e) {
-        let file = e.target.files[0];
-        jQuery('#output').attr('src', URL.createObjectURL(file));
-    })
-
-    // jQuery(document).on('submit', '#addform', function (e) {
-    //     e.preventDefault();
-    //     jQuery('.submit-btn').html(
-    //         `<div class="spinner-border text-white mr-2 align-self-center loader-sm "></div> Loading...`
-    //     );
-
-    //     let action = jQuery(this).attr('action');
-    //     let method = jQuery(this).attr('method');
+        $(document).on('click', '.remove-file', function() {
+            let id = $(this).attr('data-id');
+            $('.remove-media-list').append(
+                `<input type="hidden" name="removeMedia[]" value='${id}' id="removed-file-${id}">`);
+            $(`.media-${id}`).addClass('removed-mediaa');
+        })
+        $(document).on('click', '.restore-media', function() {
+            let id = $(this).attr('data-id');
+            $(`#removed-file-${id}`).remove();
+            $(`.media-${id}`).removeClass('removed-mediaa');
+        })
 
 
-    //     let formData = new FormData(); // Create a new FormData object
+        jQuery(document).on('change', '#image', function(e) {
+            let file = e.target.files[0];
+            jQuery('#output').attr('src', URL.createObjectURL(file));
+        })
 
-    //     // Add form fields to the FormData object
-    //     formData.append('description', $('#mytextareaa').val());
+        // jQuery(document).on('submit', '#addform', function(e) {
+        //     e.preventDefault();
+        //     jQuery('.submit-btn').html(
+        //         `<div class="spinner-border text-white mr-2 align-self-center loader-sm "></div> Loading...`
+        //     );
 
+        //     let action = jQuery(this).attr('action');
+        //     let method = jQuery(this).attr('method');
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: action,
+        //         data: new FormData(this),
+        //         contentType: false,
+        //         processData: false,
+        //         dataType: "JSON",
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         },
+        //         success: function(result) {
+        //             $("#alert").html(alertMessage(result));
+        //             $("html, body").animate({
+        //                 scrollTop: 0,
+        //             }, 1000);
 
-    //     $.ajax({
-    //         type: 'PUT',
-    //         url: action,
-    //         data: formData,
-    //         contentType: false,
-    //         processData: false,
-    //         dataType: "JSON",
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         },
-    //         success: function (result) {
-    //             $("#alert").html(alertMessage(result));
-    //             $("html, body").animate({
-    //                 scrollTop: 0,
-    //             }, 1000);
+        //             if (result['status'] == "success" && method.toLowerCase() === 'post') {
+        //                 $("#addform").trigger("reset");
+        //                 $('.custom-file-container__image-preview ').html();
+        //                 $('#keywords').val(null).trigger('change')
+        //                 $('#summernote').summernote('code', '');
+        //             }
 
-    //             if (result['status'] == "success" && method.toLowerCase() === 'put') {
-    //                 $("#addform").trigger("reset");
-    //                 $('.custom-file-container__image-preview ').html();
-    //                 $('#keywords').val(null).trigger('change')
-    //                 $('#summernote').summernote('code', '');
-    //             }
+        //             // Additional logic for success can go here
+        //         },
+        //         error: function(error) {
+        //             console.log(error);
+        //             jQuery('.submit-btn').html(`Try Again!`);
+        //         },
+        //         complete: function() {
+        //             // This will be executed whether the request is successful or not
+        //             jQuery('.submit-btn').html(`Save Changes`);
+        //         }
+        //     });
+        // });
 
-    //             // Additional logic for success can go here
-    //         },
-    //         error: function (error) {
-    //             console.log(error);
-    //             jQuery('.submit-btn').html(`Try Again!`);
-    //         },
-    //         complete: function () {
-    //             // This will be executed whether the request is successful or not
-    //             jQuery('.submit-btn').html(`Save Changes`);
-    //         }
-    //     });
-    // });
-
-    var editor1 = new RichTextEditor("#mytextareaa");
-    jQuery(".tagging").select2({
-        tags: true
-    });
-
-</script>
+        var editor1 = new RichTextEditor("#mytextareaa");
+        var secondUpload = new FileUploadWithPreview('mySecondImage')
+        jQuery(".tagging").select2({
+            tags: true
+        });
+    </script>
 @endsection

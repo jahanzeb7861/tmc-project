@@ -226,7 +226,7 @@
 @endsection
 @section('scripts')
     <script type="text/javascript" src="{{ asset('admin-assets/plugins/richtexteditor/rte.js') }}"></script>
-    <script type="text/javascript" src='{{ asset('admin-assets/plugins/richtexteditor/plugins/all_plugins.js') }}'>
+    <script type="text/javascript" src="{{ asset('admin-assets/plugins/richtexteditor/plugins/all_plugins.js') }}">
     </script>
     <script src="{{ asset('admin-assets/plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
     <script>

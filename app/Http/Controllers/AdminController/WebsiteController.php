@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\HeaderCategory;
 use App\Models\HeaderPage;
 use App\Models\PagesMedia;
+use App\Models\Staff;
+use App\Models\UnionCouncil;
 use App\Models\WebsiteSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -88,7 +90,7 @@ class WebsiteController extends Controller
     {
         try {
             // about page
-            $data = HeaderPage::where('id', $id)->first();
+            $data = HeaderPage::with('pageMedia')->where('id', $id)->first();
             $category = HeaderCategory::where('parent', '!=', 0)->get();
             $type = $data->menu_type;
             return view('admin.header-pages.page-edit', compact('category', 'data', 'type'));
@@ -117,6 +119,44 @@ class WebsiteController extends Controller
                 'user_id' => auth()->id(),
             ]);
 
+            // $slug = Str::slug($request->input('title'), '-');
+            $slug = $page->slug;
+
+
+            if (!empty($request->input('removeMedia'))) {
+                // Remove Media
+
+                foreach ($request->input('removeMedia') as $id) {
+                     try {
+                    $removedFile = PagesMedia::findOrFail($id);
+                    $oldImagePath = public_path('uploads/content/'. $removedFile->file_name) ;
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                    $removedFile->delete();
+                     } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                        // Handle the case where the record is not found (log, return response, etc.)
+                        return response()->json(['status' => 'danger', 'message' => 'Media record not found', 'error' => $e->getMessage()]);
+                }
+                }
+            }
+
+
+            if (!empty($request->file('file'))) {
+                // Save Image
+                $files = $request->file('file');
+                foreach ($files as $key => $file) {
+                    $imageName = $slug . '-' . now()->format('YmdHis') . $key . '.webp';
+                    $file->move(public_path('uploads/content/'), $imageName);
+                    PagesMedia::create([
+                        'file_name' => $imageName,
+                        'path' => 'uploads/content/',
+                        'type' => $page->menu_type,
+                        'header_page_id' => $page->id,
+                    ]);
+                }
+            }
+
             return redirect()->back()->with('success', 'Post successfully updated');
             // return response()->json(['status' => 'success', 'message' => 'Post successfully Updated']);
         } catch (\Throwable $th) {
@@ -126,6 +166,18 @@ class WebsiteController extends Controller
 
     public function view_page($slug)
     {
+
+        if ($slug == "organogram") {
+
+            $unionCouncils = UnionCouncil::get();
+
+            return view('fronts.union_councils_list',compact('unionCouncils'));
+        } elseif ($slug == "management") {
+            $staffs = Staff::get();
+
+            return view('fronts.staffs_list',compact('staffs'));
+        }
+
 
         $data = HeaderPage::where('slug', $slug)->first();
 

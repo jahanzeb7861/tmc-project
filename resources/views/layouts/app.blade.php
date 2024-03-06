@@ -361,7 +361,7 @@
                             @endif
                             <div class="nav-menu  menu-links mx-auto w-auto">
 
-                            @if (isset($menuItems) && count($menuItems) > 0)
+                                @if (isset($menuItems) && count($menuItems) > 0)
                                 <div class="header__nav w-100">
                                     @foreach ($menuItems as $menuItem)
                                     <ul class="nawsdrop">
@@ -382,18 +382,18 @@
                                     </ul>
                                     @endforeach
                                 </div>
-                            @else
+                                @else
 
 
                                 <div class="header__nav w-100">
                                     <ul class="nawsdrop">
                                         <li class="news-item news-item-main">
-                                            <a class="nav__button" href="/page/about">ABOUT
+                                            <a class="nav__button" href="/about">ABOUT
                                                 MOMINABAD</a>
                                             <ul class="news-menu" style="
     width: 230px;
 ">
-                                                <li class="news-item"><a class="itemss" href="/page/about">About Us</a></li>
+                                                <li class="news-item"><a class="itemss" href="/about">About Us</a></li>
                                                 <li class="news-item"><a class="itemss" href="/page/message">Chairman's
                                                         Message</a></li>
                                                 <li class="news-item"><a class="itemss" class="itemss"
@@ -410,27 +410,34 @@
 
                                     <ul class="nawsdrop">
                                         <li class="news-item news-item-main">
-                                            <a class="nav__button" href="/page/about">Services</a>
-                                            <ul class="news-menu" style="
-    width: 230px;
-">
-                                                <li class="news-item"><a class="itemss"
-                                                        href="/details/schools">Schools</a>
+                                            <a class="nav__button" href="/page/services">Services</a>
+                                                                                        <ul class="news-menu" style="width: 230px;">
+                                                                                                <li class="news-item">
+                                                    <a class="itemss" href="/details/schools">Schools</a>
                                                 </li>
-                                                <li class="news-item"><a class="itemss"
-                                                        href="/details/dispensaries-maternity-homes">Dispensaries
-                                                        / Maternity Homes</a></li>
-                                                <li class="news-item"><a class="itemss"
-                                                        href="/details/list-of-community-center-in-tmc-mominabad">Community
-                                                        Centers</a></li>
-                                                <li class="news-item"><a class="itemss"
-                                                        href="/details/library">Libraries</a>
+                                                                                                <li class="news-item">
+                                                    <a class="itemss" href="/details/dispensaries-maternity-homes">Dispensaries / Maternity Homes</a>
                                                 </li>
-                                                <li class="news-item"><a class="itemss" href="/page/trade">Apply for Trade
-                                                        License</a></li>
-
-                                            </ul>
-                                        </li>
+                                                                                                <li class="news-item">
+                                                    <a class="itemss" href="/details/community-centers">Community Centers</a>
+                                                </li>
+                                                                                                <li class="news-item">
+                                                    <a class="itemss" href="/details/librarys">Librarys</a>
+                                                </li>
+                                                                                                <li class="news-item">
+                                                    <a class="itemss" href="/details/hostpitals">Hostpitals</a>
+                                                </li>
+                                                                                                <li class="news-item">
+                                                    <a class="itemss" href="/details/shelter-homes">Shelter Homes</a>
+                                                </li>
+                                                                                                <li class="news-item">
+                                                    <a class="itemss" href="/details/animal-shelters">Animal Shelters</a>
+                                                </li>
+                                                                                                <li class="news-item">
+                                                    <a class="itemss" href="/details/parks-and-playgrounds">Parks And Playgrounds</a>
+                                                </li>
+                                                                                            </ul>
+                                                                                    </li>
                                     </ul>
 
                                     <ul class="nawsdrop">
@@ -457,10 +464,13 @@
                                             <ul class="news-menu" style="
     width: 140px;
 ">
-                                                <li class="news-item"><a class="itemss" href="/page/tenders">Tenders</a></li>
-                                                <li class="news-item"><a class="itemss" href="/page/auctions">Auctions</a>
+                                                <li class="news-item"><a class="itemss" href="/page/tenders">Tenders</a>
                                                 </li>
-                                                <li class="news-item"><a class="itemss" href="/page/budget">Budget books</a>
+                                                <li class="news-item"><a class="itemss"
+                                                        href="/page/auctions">Auctions</a>
+                                                </li>
+                                                <li class="news-item"><a class="itemss" href="/page/budget">Budget
+                                                        books</a>
                                                 </li>
 
                                             </ul>
