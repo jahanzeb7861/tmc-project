@@ -81,9 +81,9 @@ class DashboardController extends Controller
                     'url' => '/',
                     'id' => 'procurement',
                     'subItems' => [
-                        ['label' => 'tenders', 'url' => '/admin/page-edit/11'],
-                        ['label' => 'auctions', 'url' => '/admin/page-edit/12'],
-                        ['label' => 'budget', 'url' => '/admin/page-edit/13'],
+                        ['label' => 'Tenders', 'url' => '/admin/tenders/list'],
+                        ['label' => 'Auctions', 'url' => '/admin/auctions/list'],
+                        ['label' => 'Budget', 'url' => '/admin/budget/list'],
                     ]
                 ],
                 [

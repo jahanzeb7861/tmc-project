@@ -369,13 +369,13 @@
                                 <li>
                                     <ul class="submenu list-unstyled">
                                         <li>
-                                            <a href="/admin/page-edit/11">tenders</a>
+                                            <a href="/admin/tenders/list">Tenders</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/page-edit/12">auctions</a>
+                                            <a href="/admin/auctions/list">Auctions</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/page-edit/13">budget</a>
+                                            <a href="/admin/budget/list">Budget</a>
                                         </li>
                                     </ul>
                                 </li>

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Auction;
+use App\Models\Budget;
 use App\Models\HeaderCategory;
 use App\Models\HeaderPage;
 use App\Models\PagesMedia;
 use App\Models\Staff;
+use App\Models\Tender;
 use App\Models\UnionCouncil;
 use App\Models\WebsiteSettings;
 use Illuminate\Http\Request;
@@ -172,10 +175,26 @@ class WebsiteController extends Controller
             $unionCouncils = UnionCouncil::get();
 
             return view('fronts.union_councils_list',compact('unionCouncils'));
-        } elseif ($slug == "management") {
+        } else if ($slug == "management") {
             $staffs = Staff::get();
 
             return view('fronts.staffs_list',compact('staffs'));
+        } else if ($slug == "tenders") {
+            $tenders = Tender::get();
+
+            return view('fronts.tenders_list',compact('tenders'));
+        }
+
+        else if ($slug == "auctions") {
+            $auctions = Auction::get();
+
+            return view('fronts.auctions_list',compact('auctions'));
+        }
+
+        else if ($slug == "budget") {
+            $budgets = Budget::get();
+
+            return view('fronts.budgets_list',compact('budgets'));
         }
 
 

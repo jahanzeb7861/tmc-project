@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController\AnnouncementsController;
 use App\Http\Controllers\adminController\AsideCategoryController;
+use App\Http\Controllers\AdminController\AuctionController;
 use App\Http\Controllers\AdminController\BannerController;
+use App\Http\Controllers\AdminController\BudgetController;
 use App\Http\Controllers\AdminController\ChairmanController;
 use App\Http\Controllers\AdminController\ContactController;
 use App\Http\Controllers\AdminController\ContactProblemController;
@@ -15,6 +17,7 @@ use App\Http\Controllers\AdminController\PostController;
 use App\Http\Controllers\AdminController\ProfileController;
 use App\Http\Controllers\AdminController\StaffController;
 use App\Http\Controllers\AdminController\TeamController;
+use App\Http\Controllers\AdminController\TenderController;
 use App\Http\Controllers\AdminController\UnionCouncilController;
 use App\Http\Controllers\AdminController\UsersController;
 use App\Http\Controllers\AdminController\WebsiteController;
@@ -240,6 +243,42 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
         Route::put('/update/{id}', [StaffController::class, 'update'])->name('admin.staff.update');
 
         Route::delete('destroy/{id}', [StaffController::class, 'destroy'])->name('admin.staff.delete');
+    });
+
+    Route::group(['prefix' => "tenders", 'middleware' => 'admin'], function () {
+        Route::get('/create', [TenderController::class, 'viewForm'])->name('admin.tender.create-form');
+        Route::post('/create', [TenderController::class, 'store'])->name('admin.tender.create');
+
+        Route::get('/list', [TenderController::class, 'index'])->name('admin.tender.list');
+
+        Route::get('/update/{id}', [TenderController::class, 'viewForm'])->name('admin.tender.update-form');
+        Route::put('/update/{id}', [TenderController::class, 'update'])->name('admin.tender.update');
+
+        Route::delete('destroy/{id}', [TenderController::class, 'destroy'])->name('admin.tender.delete');
+    });
+
+    Route::group(['prefix' => "auctions", 'middleware' => 'admin'], function () {
+        Route::get('/create', [AuctionController::class, 'viewForm'])->name('admin.auction.create-form');
+        Route::post('/create', [AuctionController::class, 'store'])->name('admin.auction.create');
+
+        Route::get('/list', [AuctionController::class, 'index'])->name('admin.auction.list');
+
+        Route::get('/update/{id}', [AuctionController::class, 'viewForm'])->name('admin.auction.update-form');
+        Route::put('/update/{id}', [AuctionController::class, 'update'])->name('admin.auction.update');
+
+        Route::delete('destroy/{id}', [AuctionController::class, 'destroy'])->name('admin.auction.delete');
+    });
+
+    Route::group(['prefix' => "budget", 'middleware' => 'admin'], function () {
+        Route::get('/create', [BudgetController::class, 'viewForm'])->name('admin.budget.create-form');
+        Route::post('/create', [BudgetController::class, 'store'])->name('admin.budget.create');
+
+        Route::get('/list', [BudgetController::class, 'index'])->name('admin.budget.list');
+
+        Route::get('/update/{id}', [BudgetController::class, 'viewForm'])->name('admin.budget.update-form');
+        Route::put('/update/{id}', [BudgetController::class, 'update'])->name('admin.budget.update');
+
+        Route::delete('destroy/{id}', [BudgetController::class, 'destroy'])->name('admin.budget.delete');
     });
 
 });

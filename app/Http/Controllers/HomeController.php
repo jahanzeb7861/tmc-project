@@ -51,7 +51,7 @@ class HomeController extends Controller
                     ['label' => 'Chairman Message', 'url' => '/page/message'],
                     ['label' => 'Vision and Mission Statement', 'url' => '/page/vision'],
                     ['label' => 'Union Councils List', 'url' => '/page/organogram'],
-                    ['label' => 'Staff', 'url' => '/'],
+                    ['label' => 'Staff', 'url' => '/page/management'],
                     ['label' => 'Functions', 'url' => '/'],
                 ]
             ],
@@ -75,6 +75,16 @@ class HomeController extends Controller
                     ['label' => 'Events', 'url' => '/page/events'],
                     ['label' => 'Video Gallery', 'url' => '/page/vgallery'],
                     ['label' => 'Procurement', 'url' => '/'],
+                ]
+            ],
+            [
+                'label' => 'Procurement',
+                'url' => '/',
+                'id' => 'procurement',
+                'subItems' => [
+                    ['label' => 'Tenders', 'url' => '/page/tenders'],
+                    ['label' => 'Auctions', 'url' => '/page/auctions'],
+                    ['label' => 'Budget', 'url' => '/page/budget'],
                 ]
             ],
             [
