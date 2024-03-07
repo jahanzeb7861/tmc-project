@@ -82,7 +82,7 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
 
     Route::group(['prefix' => "banner", 'middleware' => 'admin'], function () {
         Route::get('/', [BannerController::class, 'viewBanner'])->name('admin.banner.update-form');
-        Route::put('/update', [BannerController::class, 'updateBanner'])->name('admin.banner.update');
+        Route::post('/update', [BannerController::class, 'updateBanner'])->name('admin.banner.update');
     });
 
     Route::group(['prefix' => "anouncement", 'middleware' => 'admin'], function () {

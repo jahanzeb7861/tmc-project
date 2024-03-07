@@ -28,6 +28,8 @@ class HomeController extends Controller
         $banner = banner::where('id', 1)->first(); // Note: I corrected 'banner' to 'Banner'
         $BannerPost = Post::with('postMedia')->where('id', $banner->post)->first();
 
+        $data = Banner::with('bannerMedia')->where('banner_title', 'banner1')->first();
+
 
         // Fetching services posts from the Post model
         $servicesPosts = Post::get();
@@ -96,7 +98,7 @@ class HomeController extends Controller
             ],
         ];
 
-        return view('fronts.home', compact('posts', 'BannerPost','menuItems'));
+        return view('fronts.home', compact('posts', 'BannerPost','menuItems','data'));
     }
     public function view_detail($slug)
     {

@@ -354,7 +354,7 @@
                                 <a class="navbar-brand d-flex align-items-center" href="{{ route('fronts.home') }}">
                                     <img src="{{ asset('uploads/website/' . $websiteSettings->logo) }}"
                                         alt="{{ $websiteSettings->title ?? 'Website Title' }}" class="logo">
-                                    <h1 class="logo-heading">TMC MOMINABAD
+                                    <h1 class="logo-heading">{{$websiteSettings->name}}
                                     </h1>
                                 </a>
                             </div>

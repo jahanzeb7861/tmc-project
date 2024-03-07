@@ -1,176 +1,224 @@
 @extends('layouts.admin')
 @section('pagename', 'Banner Settings')
 
+@section('styles')
+
+@endsection
+
 @section('content')
-    <style>
-        .search-result {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+<link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/css/forms/switches.css') }}">
+<link href="{{ asset('admin-assets/plugins/file-upload/file-upload-with-preview.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<link rel="stylesheet" href="{{ asset('admin-assets/plugins/richtexteditor/rte_theme_default.css') }}" />
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 
-        .post-card {
-            display: flex;
-            padding: 10px;
-            box-shadow: 5px 0px 10px #0d600822;
-            border-radius: 5px;
-            width: 100%;
-            gap: 10px;
-            background: #f5f5f5;
-        }
 
-        .post-card img {
-            width: 80px;
-            max-height: 60px;
-            object-fit: contain;
-            background: #000;
-            border-radius: 5px;
-        }
+<div id="content" class="main-content">
+    <div class=" layout">
+        <div class=" layout-top-spacing">
 
-        .post-card h4 {
-            font-size: 14px;
-        }
-    </style>
+            <div class="align-items-center col-12 col-md-12 col-sm-12 col-xl-12 d-flex mb-3 justify-content-between">
 
-    <div id="content" class="main-content">
-        <div class=" layout">
-            <div class=" layout-top-spacing">
+                <h4>
+                    Banner Settings
+                </h4>
 
-                <div class="align-items-center col-12 col-md-12 col-sm-12 col-xl-12 d-flex mb-3 justify-content-between">
+            </div>
 
-                    <h4>
-                        Banner Settings
-                    </h4>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
 
-                </div>
+                <div class="widget-content widget-content-area" style="overflow-x: auto; ">
+                    <div id="alert"></div>
+                    <form method="POST" class="p-5" id="addform" enctype="multipart/form-data"
+                        action="{{ route('admin.banner.update', ['id' => $data->id]) }}">
+                            @method('POST')
+                            @CSRF
 
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                            <input type="hidden" name="id" value="{{ @$data->id }}">
 
-                    <div class="widget-content widget-content-area" style="overflow-x: auto; ">
-                        <div class="row w-100 m-0 mb-4 py-3">
-                            <div class="col-md-12 mt-4">
-                                <h4>Currect Banner</h4>
-                                <div class="selected-banner">
-                                    <div class="post-card col-md-12">
-                                        <img src="{{ asset('uploads/content/' . @$banner->postMedia[0]->file_name) }}" />
-                                        <div class='row'>
-                                            <h4 class='col-md-10'>{{ @$banner->title }}</h4>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="custom-file-container" data-upload-id="mySecondImage">
+                                        <label>Upload (Allow Multiple)
+                                            <a href="javascript:void(0)" class="custom-file-container__image-clear"
+                                                title="Clear Image">x</a></label>
+                                        <label class="custom-file-container__custom-file">
+                                            <input name="file[]" type="file"
+                                                class="custom-file-container__custom-file__custom-file-input" multiple>
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                            <span
+                                                class="custom-file-container__custom-file__custom-file-control"></span>
+                                        </label>
+                                        <div class="custom-file-container__image-preview"></div>
+                                    </div>
+                                    @if (isset($data))
+                                    <div class="image-list">
+                                        @foreach ($data->bannerMedia as $media)
+                                        <div class="form-media-box media-{{ $media->id }}">
+                                            <img src="{{ asset('uploads/content/' . $media->file_name) }}" />
+                                            <div class="media-toolbar">
+                                                <a href="{{ asset('uploads/content/' . $media->file_name) }}"
+                                                    target="_blank" class="view-media">
+                                                    <i class="fa fa-eye fa-solid"></i>
+                                                </a>
+                                                <button type="button" class="remove-file" data-id='{{ $media->id }}'>
+                                                    <i class="fas fa-trash fa fa-solid"></i>
+                                                </button>
+                                                <button type="button" class="restore-media" data-id='{{ $media->id }}'>
+                                                    Restore
+                                                </button>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        <div class="remove-media-list">
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+
+                                <div class="col-md-12 mx-auto mt-4">
+                                    <button class="btn btn-success  mt-4 mb-3 mr-3 submit-btn shadow-none"
+                                        type="submit">
+                                        Save Changes
+                                    </button>
+
+                                </div>
+
+
+                                <div class="col-md-12 mt-3" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="summernote" class=""> Description</label>
+
+                                        <div class="bg-white p-2 rounded-sm" id="">
+                                            <textarea  id="mytextareaa"  name="description"
+                                                rows="4">{{ @base64_decode($data->description) }}</textarea>
                                         </div>
                                     </div>
                                 </div>
+
+
                             </div>
-                            <div class="col-md-12 mt-3 d-flex justify-content-center align-items-center">
-                                <div class="form-group w-100">
-                                    <label for="search"> Search Post</label>
-                                    <input id="search" type="text" placeholder="Search Title" name="search"
-                                        class="form-control">
-                                </div>
-                                <button id='searchPost' type="button" class="btn btn-sm ml-2  py-2 btn-success">
-                                    <i class="fa-solid fa fa-magnifying-glass"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-12">
-
-                                <div class="search-result">
-
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
+                        </form>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
+</div>
 
 @endsection
 @section('scripts')
-    <script>
-        jQuery(document).on('click', '#searchPost', function() {
-            let asset_path = "{{ asset('uploads/content/') }}"
-            let value = $('#search').val()
-            if (value.length < 3) {
-                alert('Search Characters should be 4 or more')
-                return;
-            }
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('admin.banner.search') }}",
-                data: {
-                    search: value
-                },
-                dataType: "JSON",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(data) {
-                    $('.search-result').html('')
-                    if (data.status == 'success') {
-                        let html = '';
-                        data.data.forEach(element => {
-                            html += `
-                            <div class="post-card col-md-5">
-                                <img src='${asset_path}/${element?.post_media?.[0]?.file_name}' />
-                                <div class='row'>
-                                    <h4 class='col-md-8'>${(element?.title)}</h4>
-                                    <div class='col-md-4'>
-                                        <button class='btn-sm btn btn-info useBanner' data-id='${element?.id}' type='button'>Use</button>
-                                        </div>
-                                </div>
-                            </div>
-                        `
-                        });
-                        $('.search-result').html(html)
-                    } else {
-                        $('.search-result').html(data.message)
-                    }
-                }
-            })
+<script type="text/javascript" src="{{ asset('admin-assets/plugins/richtexteditor/rte.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin-assets/plugins/richtexteditor/plugins/all_plugins.js') }}">
+</script>
+<script src="{{ asset('admin-assets/plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
+<script>
+    jQuery(document).on('change', '.is_faq', function () {
+        let value = $(this).is(':checked');
+        if (value) {
+            jQuery(".faq-sec").show(500)
+        } else {
+            jQuery(".faq-sec").hide(500)
+
+        }
+    })
+    jQuery(document).on('click', '.new-faq', function () {
+        let html = `
+            <div class="faq-main">
+                 <div class="faq-question">
+                     <input placeholder="Question" class="form-control" name="question[]" type="text">
+                     <button type='button' class="btn btn-danger btn-sm px-2  py-1 remove-faq" > <i class="fas fa-trash  pt-1 fa fa-solid fa-2x"></i> </button>
+                 </div>
+                 <div class="faq-answer">
+                     <textarea placeholder="Answer" class="form-control" name="answer[]"></textarea>
+                 </div>
+             </div>
+            `;
+        jQuery('.faq-sec').prepend(html)
+    })
+    jQuery(document).on('click', '.remove-faq', function () {
+        jQuery(this).parent().parent().hide(500);
+        setTimeout(() => {
+            jQuery(this).parent().parent().remove();
+        }, 600);
+    })
+    $(document).on('change', '#language', function () {
+
+        if ($(this).val() == 'urdu') {
+
+            $('#addform').attr('dir', 'rtl')
+        } else {
+
+            $('#addform').attr('dir', 'ltr')
+        }
+    })
+
+    $(document).on('click', '.remove-file', function () {
+        let id = $(this).attr('data-id');
+        $('.remove-media-list').append(
+            `<input type="hidden" name="removeMedia[]" value='${id}' id="removed-file-${id}">`);
+        $(`.media-${id}`).addClass('removed-mediaa');
+    })
+    $(document).on('click', '.restore-media', function () {
+        let id = $(this).attr('data-id');
+        $(`#removed-file-${id}`).remove();
+        $(`.media-${id}`).removeClass('removed-mediaa');
+    })
 
 
-        })
+    jQuery(document).on('change', '#image', function (e) {
+        let file = e.target.files[0];
+        jQuery('#output').attr('src', URL.createObjectURL(file));
+    })
 
-        jQuery(document).on('click', '.useBanner', function(e) {
-            e.preventDefault();
-            let thisy = $(this)
-            jQuery(thisy).html('<i class="fa fa-spin fa-spinner fa-solid"></i>');
-            let id = jQuery(thisy).data('id')
+    // jQuery(document).on('submit', '#addform', function(e) {
+    //     e.preventDefault();
+    //     jQuery('.submit-btn').html(
+    //         `<div class="spinner-border text-white mr-2 align-self-center loader-sm "></div> Loading...`
+    //     );
 
-            $.ajax({
-                type: 'PUT',
-                url: "{{ route('admin.banner.update') }}",
-                data: {
-                    post_id: id
-                },
-                dataType: "JSON",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(result) {
-                    if (result['status'] == "success") {
-                        jQuery(thisy).html('Used');
-                        setTimeout(() => {
-                            location.reload()
-                        }, 500);
-                    } else {
-                        $("#alert").html(alertMessage(result));
-                    }
+    //     let action = jQuery(this).attr('action');
+    //     let method = jQuery(this).attr('method');
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: action,
+    //         data: new FormData(this),
+    //         contentType: false,
+    //         processData: false,
+    //         dataType: "JSON",
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         },
+    //         success: function(result) {
+    //             $("#alert").html(alertMessage(result));
+    //             $("html, body").animate({
+    //                 scrollTop: 0,
+    //             }, 1000);
 
-                    // Additional logic for success can go here
-                },
-                error: function(error) {
-                    jQuery('.submit-btn').html(`Try Again!`);
-                },
-                complete: function() {
-                    jQuery('.submit-btn').html(`Save Changes`);
-                }
-            });
-        });
-    </script>
+    //             if (result['status'] == "success" && method.toLowerCase() === 'post') {
+    //                 $("#addform").trigger("reset");
+    //                 $('.custom-file-container__image-preview ').html();
+    //                 $('#keywords').val(null).trigger('change')
+    //                 $('#summernote').summernote('code', '');
+    //             }
+
+    //             // Additional logic for success can go here
+    //         },
+    //         error: function(error) {
+    //             console.log(error);
+    //             jQuery('.submit-btn').html(`Try Again!`);
+    //         },
+    //         complete: function() {
+    //             // This will be executed whether the request is successful or not
+    //             jQuery('.submit-btn').html(`Save Changes`);
+    //         }
+    //     });
+    // });
+
+    var editor1 = new RichTextEditor("#mytextareaa");
+    var secondUpload = new FileUploadWithPreview('mySecondImage')
+    jQuery(".tagging").select2({
+        tags: true
+    });
+
+</script>
 @endsection

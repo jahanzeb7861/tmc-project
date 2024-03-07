@@ -65,7 +65,7 @@ class HeaderController extends Controller
             //throw $th;
         }
     }
- 
+
     public function store(Request $request)
     {
         try {
