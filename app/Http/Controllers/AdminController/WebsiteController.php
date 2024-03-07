@@ -8,6 +8,7 @@ use App\Models\Budget;
 use App\Models\HeaderCategory;
 use App\Models\HeaderPage;
 use App\Models\PagesMedia;
+use App\Models\Post;
 use App\Models\Staff;
 use App\Models\Tender;
 use App\Models\UnionCouncil;
@@ -97,6 +98,22 @@ class WebsiteController extends Controller
             $category = HeaderCategory::where('parent', '!=', 0)->get();
             $type = $data->menu_type;
             return view('admin.header-pages.page-edit', compact('category', 'data', 'type'));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+
+    // viewIwantToPage
+    public function viewIwantToPage()
+    {
+        try {
+            // dd(1);
+            // about page
+            $posts = Post::where('category',15)->get();
+
+            // dd($posts);
+            return view('fronts.iwantto',compact('posts'));
         } catch (\Throwable $th) {
             //throw $th;
         }

@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('postMedia')->where('is_publish', 'publish')->orderBy('id', 'desc')->limit(8)->get();
+        $posts = Post::with('postMedia')->where('is_publish', 'publish')->orderBy('id', 'desc')->where('category','!=',15)->limit(8)->get();
         $banner = banner::where('id', 1)->first(); // Note: I corrected 'banner' to 'Banner'
         $BannerPost = Post::with('postMedia')->where('id', $banner->post)->first();
 

@@ -85,17 +85,19 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('components.quick-category', function ($view) {
-            $mainCat = HeaderCategory::where('parent', '2')->get();
-            $posts = [];
-            foreach ($mainCat as $key => $value) {
+            // $mainCat = HeaderCategory::where('id', 15)->get();
+            // $posts = [];
+            // foreach ($mainCat as $key => $value) {
 
-                $postsget = Post::where('menu_type', 'menu')->where('category', $value->id)->orderBy('slug', 'ASC')->limit(7)->get();
+            //     $postsget = Post::where('menu_type', 'menu')->where('category', $value->id)->orderBy('slug', 'ASC')->limit(7)->get();
 
-                foreach ($postsget as $key => $post) {
-                    # code...
-                    array_push($posts, $post);
-                }
-            }
+            //     foreach ($postsget as $key => $post) {
+            //         # code...
+            //         array_push($posts, $post);
+            //     }
+            // }
+
+            $posts = Post::where('category',15)->limit(8)->get();
 
             $view->with(['posts' => $posts]);
         });

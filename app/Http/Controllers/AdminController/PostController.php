@@ -19,7 +19,7 @@ class PostController extends Controller
     {
         try {
             if ($type == 'menu') {
-                $category = HeaderCategory::where('parent', '!=', 0)->get();
+                $category = HeaderCategory::where('parent', '==', 0)->get();
             } else if ($type == 'aside') {
                 $category = AsideCategory::where('parent', '!=', 0)->get();
             }
@@ -34,7 +34,7 @@ class PostController extends Controller
         try {
 
             $data = Post::with(['postMedia', 'faq_details'])->where('id', $id)->first();
-            $category = HeaderCategory::where('parent', '!=', 0)->get();
+            $category = HeaderCategory::where('parent', '==', 0)->get();
             $type = $data->menu_type;
             return view('admin.post.form', compact('category', 'data', 'type'));
         } catch (\Throwable $th) {
@@ -161,8 +161,14 @@ class PostController extends Controller
 
             $post = Post::findOrFail($id);
 
-            // Create Slug name
-            $slug = Str::slug($request->input('title'), '-');
+            if ($request->category == 15) {
+                // Create Slug name
+                $slug = $post->slug;
+            } else {
+                $slug = Str::slug($request->input('title'), '-');
+            }
+
+
 
             // Process Keywords
             $keywordsString = implode(',', $request->input('keywords', []));

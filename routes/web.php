@@ -127,6 +127,10 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
     // Route::get('/about-edit/{id}', [WebsiteController::class, 'viewAboutPage'])->name('admin.header-pages.about-edit');
     Route::post('update-about-page/{id}', [WebsiteController::class, 'updateAboutPage'])->name('admin.header-pages.about-update');
 
+    // I WANT TO
+    Route::get('/iwantto', [WebsiteController::class, 'viewIwantToPage'])->name('admin.header-pages.page-edit');
+
+
 
     Route::group(['prefix' => "settings", 'middleware' => 'admin'], function () {
         Route::get('/site', [WebsiteController::class, 'view_settings'])->name('admin.web-settings.site-form');
@@ -332,9 +336,12 @@ Route::get('/auctions', function () {
 Route::get('/budget', function () {
     return view("fronts.budget");
 });
-Route::get('/iwantto', function () {
-    return view("fronts.iwantto");
-});
+
+Route::get('/iwantto', [WebsiteController::class, 'viewIwantToPage'])->name('admin.header-pages.page-edit');
+
+// Route::get('/iwantto', function () {
+//     return view("fronts.iwantto");
+// });
 Route::get('/pay', function () {
     return view("fronts.pay");
 });
