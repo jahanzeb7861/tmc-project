@@ -57,7 +57,6 @@
 
 
 {!! base64_decode($data->description) !!}
-</>
 
 
 <!-- <div class="modal fade" id="contentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

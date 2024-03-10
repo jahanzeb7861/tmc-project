@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\banner;
+use App\Models\Banner;
 use App\Models\Chairmans;
 use App\Models\ListPDF;
 use App\Models\Post;
 use App\Models\Team;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -25,14 +24,14 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::with('postMedia')->where('is_publish', 'publish')->orderBy('id', 'desc')->where('category','!=',15)->limit(8)->get();
-        $banner = banner::where('id', 1)->first(); // Note: I corrected 'banner' to 'Banner'
+        $banner = Banner::where('id', 1)->first(); // Note: I corrected 'banner' to 'Banner'
         $BannerPost = Post::with('postMedia')->where('id', $banner->post)->first();
 
         $data = Banner::with('bannerMedia')->where('banner_title', 'banner1')->first();
 
 
         // Fetching services posts from the Post model
-        $servicesPosts = Post::get();
+        $servicesPosts = Post::where('category','!=',15)->get();
 
         // Processing services posts to create subItems array
         $servicesSubItems = [];

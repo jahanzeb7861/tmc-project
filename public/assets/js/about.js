@@ -1,4 +1,4 @@
-// Function For creating response 
+// Function For creating response
 
 function alertMessage(result) {
     return ` <div class="alert alert-${result['status']} inverse alert-dismissible fade show" role="alert">
@@ -126,6 +126,21 @@ jQuery(document).on('submit', '.mediaform', function (e) {
     });
 
 })
+
+
+
+setTimeout(() => {
+    // Select all elements with class "fa-solid fa-pencil"
+    var elements = document.querySelectorAll('.fa-solid.fa-pen');
+    // Loop through each element
+    elements.forEach(function(element) {
+    // Change the class attribute to "bi bi-pencil"
+    element.classList.remove('fa-solid', 'fa-pen');
+    element.classList.add('bi', 'bi-pencil');
+    });
+}, 500);
+
+
 
 jQuery(document).on('click', '.edit-image-content', function () {
     let id = $(this).data('id');
