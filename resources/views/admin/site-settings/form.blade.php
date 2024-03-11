@@ -278,6 +278,10 @@
                                     </div>
                                 </div>
 
+
+
+
+
                             </div>
 
                     </div>
@@ -293,6 +297,100 @@
                 </div>
                 </form>
             </div>
+
+            <div class="col-md-12 mt-3">
+                <hr />
+                <h4 class=" ">
+                    Related Links
+                </h4>
+            </div>
+
+            <table id="zero-config" class="table dt-table-hover" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Sr no</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <!-- <th>Toggle Status</th> -->
+                        <th>Actions</th>
+                        <th>Created At</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                @foreach ($data->relatedLinks as $key => $row)
+                    <tr>
+                        <td>{{ $key + 1 }}</td>
+                        <td>{{ @$row->title }}</td>
+                        <td>
+                            <span class="badge {{ @$row->is_active === 'inactive' ? 'badge-danger' : 'badge-success' }}">
+                                {{ @$row->is_active === 'inactive' ? 'InActive' : 'Active' }}
+                            </span>
+                        </td>
+                        <td>
+
+                            <form id="form1" action="{{ route('admin.relatedLinks.toggle-status', ['id' => $row->id]) }}" method="post">
+                                @csrf
+                                @method('PUT')
+                                <button type="button" data-form-id="form1" class="toggle-btn btn btn-{{ $row->is_active === 'inactive' ? 'success' : 'danger' }} btn-sm">
+                                        {{ $row->is_active === 'active' ? 'Make InActive' : 'Make Active' }}
+                            </button>
+                            </form>
+                        </td>
+                        <td>{{ $row->created_at }}</td>
+                    </tr>
+                @endforeach
+
+                </tbody>
+            </table>
+
+            <div class="col-md-12 mt-3">
+                <hr />
+                <h4 class=" ">
+                    Useful Links
+                </h4>
+            </div>
+
+            <table id="zero-config" class="table dt-table-hover" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Sr no</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <!-- <th>Toggle Status</th> -->
+                        <th>Actions</th>
+                        <th>Created At</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                @foreach ($data->usefulLinks as $key => $row)
+                    <tr>
+                        <td>{{ $key + 1 }}</td>
+                        <td>{{ @$row->title }}</td>
+                        <td>
+                            <span class="badge {{ @$row->is_active === 'inactive' ? 'badge-danger' : 'badge-success' }}">
+                                {{ @$row->is_active === 'inactive' ? 'InActive' : 'Active' }}
+                            </span>
+                        </td>
+                        <td>
+
+                            <form id="form2" action="{{ route('admin.usefulLinks.useful-toggle-status', ['id' => $row->id]) }}" method="post">
+                                @csrf
+                                @method('PUT')
+                                <button type="button" data-form-id="form2" class="toggle-btn btn btn-{{ $row->is_active === 'inactive' ? 'success' : 'danger' }} btn-sm">
+                                        {{ $row->is_active === 'active' ? 'Make InActive' : 'Make Active' }}
+                            </button>
+                            </form>
+                        </td>
+                        <td>{{ $row->created_at }}</td>
+                    </tr>
+                @endforeach
+
+                </tbody>
+            </table>
         </div>
     </div>
     </div>
@@ -357,4 +455,23 @@
             });
         });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleButtons = document.querySelectorAll('.toggle-btn');
+
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const formId = this.getAttribute('data-form-id');
+                const form = document.getElementById(formId);
+
+                if (form) {
+                    form.submit();
+                } else {
+                    console.error('Form not found');
+                }
+            });
+        });
+    });
+</script>
 @endsection

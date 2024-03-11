@@ -302,7 +302,7 @@
                                             <a href="/admin/post/update/27">Community Centers</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/post/update/28">Librarys</a>
+                                            <a href="/admin/post/update/28">Libraries</a>
                                         </li>
                                         <li>
                                             <a href="/admin/post/update/29">Hostpitals</a>
@@ -431,8 +431,34 @@
                                 </li>
                             </ul>
                         </li>
-                        @if (auth()->user()->role == 'admin')
+
                         <li class="menu">
+                            <a href="#home" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle collapsed">
+                                <div class="">
+                                    <i class="fa fa-navicon fa-solid"></i>
+                                    <span>Home</span>
+                                </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </div>
+                            </a>
+                            <ul class="submenu list-unstyled collapse" id="home" data-parent="#accordionExample">
+                                <li>
+                                    <a href="{{ route('admin.banner.update-form') }}">Banner Setting</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.menu.show-list') }}">Manage Nav Menu
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        @if (auth()->user()->role == 'admin')
+                        <!-- <li class="menu">
                             <a href="{{ route('admin.aside-categories.list') }}" aria-expanded="false"
                                 class="dropdown-toggle">
                                 <div class="">
@@ -449,9 +475,9 @@
                                     <span>Events</span>
                                 </div>
                             </a>
-                        </li>
+                        </li> -->
 
-                        <li class="menu">
+                        <!-- <li class="menu">
                             <a href="{{ route('admin.banner.update-form') }}" aria-expanded="false"
                                 class="dropdown-toggle">
                                 <div class="">
@@ -459,7 +485,7 @@
                                     <span>Banner Setting</span>
                                 </div>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="menu">
                             <a href="{{ route('admin.anouncement.update-form') }}" aria-expanded="false"
                                 class="dropdown-toggle">
@@ -469,22 +495,22 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="menu">
+                        <!-- <li class="menu">
                             <a href="{{ route('admin.listview.list') }}" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i class="fa-regular fa-file-pdf"></i>
                                     <span>List View</span>
                                 </div>
                             </a>
-                        </li>
-                        <li class="menu">
+                        </li> -->
+                        <!-- <li class="menu">
                             <a href="{{ route('admin.team.list') }}" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i class="fa fa-user-tie fa-solid"></i>
                                     <span>Staff</span>
                                 </div>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="menu">
                             <a href="{{ route('admin.user.list') }}" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">

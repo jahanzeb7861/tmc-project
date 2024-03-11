@@ -26,7 +26,7 @@ class DashboardController extends Controller
             ];
 
            // Fetching services posts from the Post model
-            $servicesPosts = Post::get();
+            $servicesPosts = Post::where('category','!=',15)->get();
 
             // Processing services posts to create subItems array
             $servicesSubItems = [];

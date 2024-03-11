@@ -13,6 +13,7 @@ use App\Http\Controllers\adminController\DashboardController;
 use App\Http\Controllers\AdminController\EventsController;
 use App\Http\Controllers\AdminController\HeaderController;
 use App\Http\Controllers\AdminController\ListPdfController;
+use App\Http\Controllers\AdminController\MenuController;
 use App\Http\Controllers\AdminController\PostController;
 use App\Http\Controllers\AdminController\ProfileController;
 use App\Http\Controllers\AdminController\StaffController;
@@ -121,6 +122,28 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
             Route::delete('destory/{id}', [PostController::class, 'destory'])->name('admin.post.delete');
         });
     });
+
+    // Header Navigation Menu Manage
+    Route::group(['prefix' => "menu"], function () {
+        Route::get('{type}/create', [MenuController::class, 'viewForm'])->name('admin.menu.show-form');
+        Route::post('{type}/store', [MenuController::class, 'store'])->name('admin.menu.store');
+        Route::get('/update/{id}', [MenuController::class, 'viewUpdateForm'])->name('admin.menu.show-update-form');
+        Route::put('update/{id}', [MenuController::class, 'update'])->name('admin.menu.update');
+        Route::get('/list', [MenuController::class, 'viewList'])->name('admin.menu.show-list');
+        Route::put('toggle-status/{id}', [MenuController::class, 'toggleStatus'])->name('admin.menu.toggle-status');
+
+        Route::middleware(['admin'])->group(function () {
+            Route::delete('destory/{id}', [PostController::class, 'destory'])->name('admin.post.delete');
+        });
+    });
+
+    // Related Page toggle status
+    Route::put('toggle-status/{id}', [WebsiteController::class, 'toggleRelatedPageStatus'])->name('admin.relatedLinks.toggle-status');
+
+
+    // Useful Page toggle status
+    Route::put('useful-toggle-status/{id}', [WebsiteController::class, 'toggleUsefulPageStatus'])->name('admin.usefulLinks.useful-toggle-status');
+
 
     // HEADER PAGES SECTION
     Route::get('/page-edit/{id}', [WebsiteController::class, 'viewPage'])->name('admin.header-pages.page-edit');

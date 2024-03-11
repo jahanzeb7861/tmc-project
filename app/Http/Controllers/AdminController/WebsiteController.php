@@ -9,11 +9,14 @@ use App\Models\HeaderCategory;
 use App\Models\HeaderPage;
 use App\Models\PagesMedia;
 use App\Models\Post;
+use App\Models\RelatedLink;
 use App\Models\Staff;
 use App\Models\Tender;
 use App\Models\UnionCouncil;
+use App\Models\UsefulLink;
 use App\Models\WebsiteSettings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -23,7 +26,7 @@ class WebsiteController extends Controller
     {
         try {
 
-            $data = WebsiteSettings::where('id', 1)->first();
+            $data = WebsiteSettings::with(['relatedLinks','usefulLinks'])->where('id', 1)->first();
             return view('admin.site-settings.form', compact('data'));
         } catch (\Throwable $th) {
             //throw $th;
@@ -220,6 +223,30 @@ class WebsiteController extends Controller
         $type = $data->menu_type;
 
         return view('fronts.header-pages', compact('data', 'type'));
+    }
+
+    public function toggleRelatedPageStatus(Request $request, $id)
+    {
+        try {
+            $relatedLink = RelatedLink::findOrFail($id);
+            $newStatus = $relatedLink->is_active === 'active' ? 'inactive' : 'active';
+            DB::table('related_links')->where('id', $id)->update(['is_active' => $newStatus]);
+            return redirect()->back()->with('success', 'Related Link status updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to update Related Link status.');
+        }
+    }
+
+    public function toggleUsefulPageStatus(Request $request, $id)
+    {
+        try {
+            $usefulLink = UsefulLink::findOrFail($id);
+            $newStatus = $usefulLink->is_active === 'active' ? 'inactive' : 'active';
+            DB::table('useful_links')->where('id', $id)->update(['is_active' => $newStatus]);
+            return redirect()->back()->with('success', 'Useful Link status updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to update Useful Link status.');
+        }
     }
 
 }
