@@ -337,7 +337,7 @@
                                 <li>
                                     <ul class="submenu list-unstyled">
                                         <li>
-                                            <a href="/admin/page-edit/7">Press Release</a>
+                                            <a href="/admin/press_release/list">Press Release</a>
                                         </li>
                                         <li>
                                             <a href="/admin/page-edit/8">Events</a>
@@ -455,6 +455,14 @@
                                     <a href="{{ route('admin.menu.show-list') }}">Manage Nav Menu
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('admin.career.list') }}">Career
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.map.show-map-form') }}">Map
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @if (auth()->user()->role == 'admin')
@@ -519,14 +527,14 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="menu">
+                        <!-- <li class="menu">
                             <a href="{{ route('admin.chairman.list') }}" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i class="fa-solid fa-user-tie"></i>
                                     <span>Chairmans</span>
                                 </div>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="menu">
                             <a href="{{ route('admin.contact-problem.list') }}" aria-expanded="false"
                                 class="dropdown-toggle">

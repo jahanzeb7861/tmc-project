@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('pagename', 'Tender')
+@section('pagename', 'Map')
 @section('styles')
 
 @endsection
@@ -40,9 +40,9 @@
 
                 <h4>
                     @if (isset($data->id))
-                    Update Tender
+                    Update Map
                     @else
-                    Add New Tender
+                    Add New Map
                     @endif
                 </h4>
 
@@ -55,62 +55,23 @@
                     <div id="alert"></div>
                     @if (isset($data))
                     <form method="POST" class="p-5" id="addform" enctype="multipart/form-data"
-                        action="{{ route('admin.tender.update', ['id' => $data->id]) }}">
+                        action="{{ route('admin.map.update', ['id' => $data->id]) }}">
                         @method('PUT')
                         @else
                         <form method="POST" class="p-5" id="addform" enctype="multipart/form-data"
-                            action="{{ route('admin.tender.create') }}">
+                            action="{{ route('admin.map.store-map') }}">
                             @endif
                             @csrf
 
                             <input type="hidden" name="id" value="{{ @$data->id }}">
 
                             <div class="row">
-                                <div class="col-md-12 mt-3">
-                                    <div class="form-group">
-                                        <label for="description" class="">Description</label>
-                                        <textarea id="description" name="description" class="form-control"
-                                            rows="4">{{ @$data->description }}</textarea>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 mt-3">
-                                    <div class="form-group">
-                                        <label for="department" class="">Department</label>
-                                        <input id="department" type="text" name="department" class="form-control"
-                                            value="{{ @$data->department }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 mt-3">
-                                    <div class="form-group">
-                                        <label for="diary_no" class="">Diary No</label>
-                                        <input id="diary_no" type="text" name="diary_no" class="form-control"
-                                            value="{{ @$data->diary_no }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 mt-3">
-                                    <div class="form-group">
-                                        <label for="tender_date" class="">Tender Date</label>
-                                        <input id="tender_date" type="date" name="tender_date" class="form-control"
-                                            value="{{ @$data->tender_date }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 mt-3">
-                                    <div class="form-group">
-                                        <label for="opening_date" class="">Opening Date</label>
-                                        <input id="opening_date" type="date" name="opening_date" class="form-control"
-                                            value="{{ @$data->opening_date }}">
-                                    </div>
-                                </div>
 
                                  <!-- File upload field -->
                                 <div class="col-md-12 mt-3">
                                     <div class="form-group">
-                                        <label for="pdf_file" class="">Upload PDF File</label>
-                                        <input id="pdf_file" type="file" name="pdf_file" class="form-control">
+                                        <label for="file" class="">Upload Map</label>
+                                        <input id="file" type="file" name="file" class="form-control">
                                     </div>
                                 </div>
 

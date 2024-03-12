@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tender;
+use App\Models\Press;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 
-class TenderController extends Controller
+class PressController extends Controller
 {
     public function index()
     {
-        $tenders = Tender::orderBy('id', 'DESC')->get();
-        return view('admin.tender.list', compact('tenders'));
+        $press = Press::orderBy('id', 'DESC')->get();
+        return view('admin.press.list', compact('press'));
     }
 
     public function viewForm($id = null)
@@ -22,9 +22,9 @@ class TenderController extends Controller
         try {
             $data = null;
             if (!empty($id)) {
-                $data = Tender::findOrFail($id);
+                $data = Press::findOrFail($id);
             }
-            return view('admin.tender.form', compact('data'));
+            return view('admin.press.form', compact('data'));
         } catch (\Throwable $th) {
         }
     }
@@ -34,10 +34,7 @@ class TenderController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'description' => 'required',
-                'department' => 'required',
-                'diary_no' => 'required',
-                'tender_date' => 'required',
-                'opening_date' => 'required',
+                'date' => 'required',
                 'pdf_file' => 'nullable|mimes:pdf|max:2048', // Adjust the max file size as needed
             ]);
 
@@ -46,15 +43,7 @@ class TenderController extends Controller
                 return response()->json(['status' => 'danger', 'message' => 'Validation Error', 'error' => $errorString]);
             }
 
-            // Handle file upload
-            // $filePath = null;
-            // if ($request->hasFile('pdf_file')) {
-            //     $file = $request->file('pdf_file');
-            //     $fileName = time() . '_' . $file->getClientOriginalName();
-            //     $filePath = $file->storeAs('pdf_files', $fileName); // Assuming 'pdf_files' is your storage path
-            // }
-
-            $slug = Str::slug($request->input('title'), '-');
+            $slug = Str::slug('press', '-');
 
             $fileName = '';
 
@@ -66,16 +55,13 @@ class TenderController extends Controller
                 $request->file('pdf_file')->move(public_path('uploads/pdf/'), $fileName);
             }
 
-            $tender = Tender::create([
+            $press = Press::create([
                 'description' => $request->description,
-                'department' => $request->department,
-                'diary_no' => $request->diary_no,
-                'tender_date' => $request->tender_date,
-                'opening_date' => $request->opening_date,
+                'date' => $request->date,
                 'pdf_file' => $fileName,
             ]);
 
-            return response()->json(['status' => 'success', 'message' => 'Tender successfully stored', 'data' => $tender]);
+            return response()->json(['status' => 'success', 'message' => 'Press successfully stored', 'data' => $press]);
         } catch (\Throwable $th) {
             return response()->json(['status' => 'danger', 'message' => 'Something wrong in the DB', 'error' => $th->getMessage()]);
         }
@@ -87,10 +73,7 @@ class TenderController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'description' => 'required',
-                'department' => 'required',
-                'diary_no' => 'required',
-                'tender_date' => 'required',
-                'opening_date' => 'required',
+                'date' => 'required',
                 'pdf_file' => 'nullable|mimes:pdf|max:2048', // Adjust the max file size as needed
             ]);
 
@@ -99,18 +82,9 @@ class TenderController extends Controller
                 return response()->json(['status' => 'danger', 'message' => 'Validation Error', 'error' => $errorString]);
             }
 
-            // Handle file upload
-            // $filePath = null;
-            // if ($request->hasFile('pdf_file')) {
-            //     $file = $request->file('pdf_file');
-            //     $fileName = time() . '_' . $file->getClientOriginalName();
-            //     $filePath = $file->storeAs('pdf_files', $fileName); // Assuming 'pdf_files' is your storage path
-            // }
+            $slug = Str::slug('press', '-');
 
-
-            $slug = Str::slug($request->input('title'), '-');
-
-            $tender = Tender::findOrFail($id);
+            $press = Press::findOrFail($id);
 
             if ($request->hasFile('pdf_file')) {
                 // Generate a unique image name based on the title and current timestamp
@@ -120,24 +94,21 @@ class TenderController extends Controller
                 $request->file('pdf_file')->move(public_path('uploads/pdf/'), $fileName);
 
                 // Remove the old image
-                if ($tender->pdf_file) {
-                    $oldImagePath = public_path('uploads/pdf/') . $tender->pdf_file;
+                if ($press->pdf_file) {
+                    $oldImagePath = public_path('uploads/pdf/') . $press->pdf_file;
                     if (file_exists($oldImagePath)) {
                         unlink($oldImagePath);
                     }
                 }
             }
 
-            $tender->update([
+            $press->update([
                 'description' => $request->description,
-                'department' => $request->department,
-                'diary_no' => $request->diary_no,
-                'tender_date' => $request->tender_date,
-                'opening_date' => $request->opening_date,
+                'date' => $request->date,
                 'pdf_file' => $fileName,
             ]);
 
-            return response()->json(['status' => 'success', 'message' => 'Tender Successfully Updated', 'data' => $tender]);
+            return response()->json(['status' => 'success', 'message' => 'Press Successfully Updated', 'data' => $press]);
         } catch (\Throwable $th) {
             return response()->json(['status' => 'danger', 'message' => 'Something wrong in the DB', 'error' => $th->getMessage()]);
         }
@@ -146,8 +117,8 @@ class TenderController extends Controller
     public function destroy($id)
     {
         try {
-            Tender::destroy($id);
-            return response()->json(['status' => 'success', 'message' => 'Tender Successfully Deleted']);
+            Press::destroy($id);
+            return response()->json(['status' => 'success', 'message' => 'Press Successfully Deleted']);
         } catch (\Throwable $th) {
             return response()->json(['status' => 'danger', 'message' => 'Something wrong in the DB', 'error' => $th->getMessage()]);
         }

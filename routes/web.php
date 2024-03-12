@@ -5,6 +5,7 @@ use App\Http\Controllers\adminController\AsideCategoryController;
 use App\Http\Controllers\AdminController\AuctionController;
 use App\Http\Controllers\AdminController\BannerController;
 use App\Http\Controllers\AdminController\BudgetController;
+use App\Http\Controllers\AdminController\CareerController;
 use App\Http\Controllers\AdminController\ChairmanController;
 use App\Http\Controllers\AdminController\ContactController;
 use App\Http\Controllers\AdminController\ContactProblemController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\AdminController\HeaderController;
 use App\Http\Controllers\AdminController\ListPdfController;
 use App\Http\Controllers\AdminController\MenuController;
 use App\Http\Controllers\AdminController\PostController;
+use App\Http\Controllers\AdminController\PressController;
 use App\Http\Controllers\AdminController\ProfileController;
 use App\Http\Controllers\AdminController\StaffController;
 use App\Http\Controllers\AdminController\TeamController;
@@ -139,6 +141,15 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
 
     // Related Page toggle status
     Route::put('toggle-status/{id}', [WebsiteController::class, 'toggleRelatedPageStatus'])->name('admin.relatedLinks.toggle-status');
+    Route::get('related-page/create', [WebsiteController::class, 'viewRelatedPageForm'])->name('admin.relatedLinks.create-form');
+    Route::post('related-page/store', [WebsiteController::class, 'storeRelatedPage'])->name('admin.relatedLinks.store');
+    // Route::post('related-page-update/{id}', [WebsiteController::class, 'updateRelatedPage'])->name('admin.relatedLinks.update-form');
+    // Route::put('update/{id}', [WebsiteController::class, 'updateRelatedPage'])->name('admin.relatedLinks.update');
+    Route::middleware(['admin'])->group(function () {
+        Route::delete('destory/{id}', [WebsiteController::class, 'destoryRelatedPage'])->name('admin.relatedLinks.delete');
+    });
+
+
 
 
     // Useful Page toggle status
@@ -284,6 +295,40 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
         Route::delete('destroy/{id}', [TenderController::class, 'destroy'])->name('admin.tender.delete');
     });
 
+    // Career page
+
+    Route::group(['prefix' => "career", 'middleware' => 'admin'], function () {
+        Route::get('/create', [CareerController::class, 'viewForm'])->name('admin.career.create-form');
+        Route::post('/create', [CareerController::class, 'store'])->name('admin.career.create');
+
+        Route::get('/list', [CareerController::class, 'index'])->name('admin.career.list');
+
+        Route::get('/update/{id}', [CareerController::class, 'viewForm'])->name('admin.career.update-form');
+        Route::put('/update/{id}', [CareerController::class, 'update'])->name('admin.career.update');
+
+        Route::delete('destroy/{id}', [CareerController::class, 'destroy'])->name('admin.career.delete');
+    });
+
+    // Press Release
+    Route::group(['prefix' => "press_release", 'middleware' => 'admin'], function () {
+        Route::get('/create', [PressController::class, 'viewForm'])->name('admin.press.create-form');
+        Route::post('/create', [PressController::class, 'store'])->name('admin.press.create');
+
+        Route::get('/list', [PressController::class, 'index'])->name('admin.press.list');
+
+        Route::get('/update/{id}', [PressController::class, 'viewForm'])->name('admin.press.update-form');
+        Route::put('/update/{id}', [PressController::class, 'update'])->name('admin.press.update');
+
+        Route::delete('destroy/{id}', [PressController::class, 'destroy'])->name('admin.press.delete');
+    });
+
+     // Map
+     Route::group(['prefix' => "map", 'middleware' => 'admin'], function () {
+        Route::get('/view', [WebsiteController::class, 'viewMap'])->name('admin.map.view-map');
+        Route::get('/show-map-form', [WebsiteController::class, 'showMapForm'])->name('admin.map.show-map-form');
+        Route::post('/store-map', [WebsiteController::class, 'storeMap'])->name('admin.map.store-map');
+    });
+
     Route::group(['prefix' => "auctions", 'middleware' => 'admin'], function () {
         Route::get('/create', [AuctionController::class, 'viewForm'])->name('admin.auction.create-form');
         Route::post('/create', [AuctionController::class, 'store'])->name('admin.auction.create');
@@ -410,10 +455,16 @@ Route::get('/functions', function () {
 Route::get('/trade', function () {
     return view("fronts.trade");
 });
-Route::get('/career', function () {
-    return view("fronts.career");
-});
+// Route::get('/career', function () {
+//     return view("fronts.career");
+// });
 Route::get('/management', function () {
     return view("fronts.management");
 });
+
+Route::get('/career', [WebsiteController::class, 'viewCareerPage'])->name('admin.career');
+
+
+
+Route::post('related-page-update/{id}', [WebsiteController::class, 'updateRelatedPage'])->name('relatedLinks.update-forms');
 

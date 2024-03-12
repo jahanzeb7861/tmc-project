@@ -264,20 +264,21 @@
             color: #22574D;
         }
 
-        /* .searchtext {
+        .searchtext {
             font-size: 14px;
             margin-left: 10px;
             margin-top: 30px;
             font-weight: 700;
 
-        } */
+        }
 
-        /*        .d-flex.align-items-center {*/
-        /*    margin-bottom: 9px;*/
-        /*}*/
-        /* button.text-center.search-text {
+        .d-flex.align-items-center {
+            margin-bottom: 9px;
+        }
+
+        button.text-center.search-text {
             color: #22574D;
-        } */
+        }
 
         .logo-div .navbar-brand {
             background: #f5f0f0 !important;
@@ -333,43 +334,66 @@
             display: none;
         }
 
-        /* ul.search-list {
+        ul.search-list {
             position: absolute;
-            top: 60px;
-        } */
+            top: 56px;
+            width: 13%;
+            /* Ensure full width of the modal */
+            background-color: #f9f9f9 !important;
+            /* Set background color of the search list */
+            padding: 15px;
+            /* Add padding to match modal padding */
+            box-sizing: border-box;
+            /* Ensure padding doesn't add to width */
+        }
 
         img.social-icon {
             width: 30px !important;
         }
 
-                /* Adjust the width and background color of the search list to match the modal */
-            .modal-search-list {
-                width: 100%; /* Ensure full width of the modal */
-                background-color: #f9f9f9 !important; /* Set background color of the search list */
-                padding: 15px; /* Add padding to match modal padding */
-                box-sizing: border-box; /* Ensure padding doesn't add to width */
-            }
+        /* Adjust the width and background color of the search list to match the modal */
+        .modal-search-list {
+            width: 100%;
+            /* Ensure full width of the modal */
+            background-color: #f9f9f9 !important;
+            /* Set background color of the search list */
+            padding: 15px;
+            /* Add padding to match modal padding */
+            box-sizing: border-box;
+            /* Ensure padding doesn't add to width */
+        }
 
-            /* Style individual search result cards */
-            .search-result-card {
-                background-color: #fff; /* Set background color of each card */
-                border-radius: 8px; /* Add rounded corners to cards */
-                padding: 15px; /* Add padding to the cards */
-                margin-bottom: 15px; /* Add margin between cards */
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
-            }
+        /* Style individual search result cards */
+        .search-result-card {
+            background-color: #fff;
+            /* Set background color of each card */
+            border-radius: 8px;
+            /* Add rounded corners to cards */
+            padding: 15px;
+            /* Add padding to the cards */
+            margin-bottom: 15px;
+            /* Add margin between cards */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Add shadow for depth */
+        }
 
-            .search-result-card img {
-                max-width: 100%; /* Ensure images fit within their containers */
-                height: auto; /* Maintain aspect ratio */
-                border-radius: 5px; /* Add rounded corners to images */
-            }
+        .search-result-card img {
+            max-width: 100%;
+            /* Ensure images fit within their containers */
+            height: auto;
+            /* Maintain aspect ratio */
+            border-radius: 5px;
+            /* Add rounded corners to images */
+        }
 
-            .search-title {
-                font-size: 18px; /* Adjust title font size */
-                margin-top: 10px; /* Add space between image and title */
-                color: #333; /* Set title color */
-            }
+        .search-title {
+            font-size: 18px;
+            /* Adjust title font size */
+            margin-top: 10px;
+            /* Add space between image and title */
+            color: #333;
+            /* Set title color */
+        }
 
     </style>
     <div id="app">
@@ -391,8 +415,8 @@
                             <div class="nav-menu  menu-links mx-auto w-auto">
 
 
-                            @if (isset($activeMenuItems) && count($activeMenuItems) > 0)
-                            <div class="header__nav w-100">
+                                @if (isset($activeMenuItems) && count($activeMenuItems) > 0)
+                                <div class="header__nav w-100">
                                     @foreach ($activeMenuItems as $menuItem)
                                     <ul class="nawsdrop">
                                         <li class="news-item news-item-main">
@@ -412,9 +436,9 @@
                                     </ul>
                                     @endforeach
                                 </div>
-                            @else
+                                @else
                                 <p>No active menu items found.</p>
-                            @endif
+                                @endif
 
 
 
@@ -560,14 +584,40 @@
                                 <!-- </div> -->
                                 </nav>
                             </div>
+
                             <div class="d-flex align-items-center mb-0">
+
+                                <div class="d-flex align-items-center me-lg-0 me-3">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#searchModal"
+                                        class="text-center  search-text">
+                                        <!--<i class="bi bi-search "></i>-->
+                                        <!--<span class="searchtext">SEARCH</span>-->
+                                    </button>
+
+                                    <div class="d-flex align-items-center">
+                                        <input type="text" id="search-post-input" placeholder="Search here.."
+                                            data-listener-added_42ed12d4="true">
+                                        <button id="search-post-btn" class="main-btn"><i
+                                                class="bi bi-search "></i></button>
+                                    </div>
+                                    <ul class="search-list ml-3" style="visibility: hidden;">
+
+                                    </ul>
+
+                                </div>
+                                <div class="d-lg-none d-flex menu-icons">
+                                    <i class="bi bi-list f-24 open-icon text-white"></i>
+                                    <i class="bi bi-x-lg f-24 close-icon text-white"></i>
+                                </div>
+                            </div>
+                            <!-- <div class="d-flex align-items-center mb-0">
 
                                 <div class="d-flex align-items-center me-lg-0 me-3">
 
 
-                                <!-- Button trigger modal -->
+
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchModal">
-                                 <i class="bi bi-search "></i>
+                                    <i class="bi bi-search "></i>
                                 </button>
 
 
@@ -576,7 +626,7 @@
                                     <i class="bi bi-list f-24 open-icon text-white"></i>
                                     <i class="bi bi-x-lg f-24 close-icon text-white"></i>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         @foreach ($menus as $menu)
@@ -830,11 +880,11 @@
                                 <h5>Related Links</h5>
 
                                 @foreach ($websiteSettings->relatedLinks as $key => $row)
-                                    @if ($row->is_active === 'active')
-                                        <div class="mb-2">
-                                            <a href="{{$row->url}}" target='_blank'>{{$row->title}}</a>
-                                        </div>
-                                    @endif
+                                @if ($row->is_active === 'active')
+                                <div class="mb-2">
+                                    <a href="{{$row->url}}" target='_blank'>{{$row->title}}</a>
+                                </div>
+                                @endif
                                 @endforeach
 
                                 <!-- <div class="mb-2">
@@ -903,11 +953,11 @@
                                 <h5>Useful Links</h5>
 
                                 @foreach ($websiteSettings->usefulLinks as $key => $row)
-                                    @if ($row->is_active === 'active')
-                                        <div class="mb-2">
-                                            <a href="{{$row->url}}" target='_blank'>{{$row->title}}</a>
-                                        </div>
-                                    @endif
+                                @if ($row->is_active === 'active')
+                                <div class="mb-2">
+                                    <a href="{{$row->url}}" target='_blank'>{{$row->title}}</a>
+                                </div>
+                                @endif
                                 @endforeach
 
                                 <!-- <div class="mb-2">
@@ -1003,7 +1053,7 @@
                         <!--sticky social media-->
                         <div id="social-sticky" class="col-lg-1 mt-lg-0 mt-3">
                             <div class="footer-col">
-                            @if (!empty($websiteSettings->facebook_link))
+                                @if (!empty($websiteSettings->facebook_link))
                                 <div class="d-flex align-items-center mb-2">
                                     <a href="#">
                                         <img src="assets/images/Facebook_icon.svg" alt="" class="me-2 social-icon">
@@ -1115,22 +1165,22 @@
 
     <!-- Modal -->
     <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="searchModalLabel">Search</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <!-- Search elements go here -->
-            <div class="d-flex align-items-center">
-            <input type="text" id="search-post-input" class="form-control" placeholder="Search here..">
-            <button id="search-post-btn" class="btn btn-primary"><i class="bi bi-search"></i></button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">Search</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Search elements go here -->
+                    <div class="d-flex align-items-center">
+                        <input type="text" id="search-post-input" class="form-control" placeholder="Search here..">
+                        <button id="search-post-btn" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    </div>
+                    <ul class="search-list mt-3"></ul>
+                </div>
             </div>
-            <ul class="search-list mt-3"></ul>
         </div>
-        </div>
-    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
         integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
@@ -1325,29 +1375,29 @@
 
     </script>
     <script>
-       jQuery(document).on('click', '#search-post-btn', function () {
-    let asset_path = "{{ asset('uploads/content/') }}";
-    let value = $('#search-post-input').val();
-    if (value.length < 3) {
-        alert('Search Characters should be 4 or more');
-        return;
-    }
-    $.ajax({
-        type: 'POST',
-        url: "{{ route('admin.banner.search') }}",
-        data: {
-            search: value
-        },
-        dataType: "JSON",
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function (data) {
-            $('.search-list').html('');
-            if (data.status == 'success') {
-                let html = '';
-                data.data.forEach(element => {
-                    html += `
+        jQuery(document).on('click', '#search-post-btn', function () {
+            let asset_path = "{{ asset('uploads/content/') }}";
+            let value = $('#search-post-input').val();
+            if (value.length < 3) {
+                alert('Search Characters should be 4 or more');
+                return;
+            }
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('admin.banner.search') }}",
+                data: {
+                    search: value
+                },
+                dataType: "JSON",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (data) {
+                    $('.search-list').html('');
+                    if (data.status == 'success') {
+                        let html = '';
+                        data.data.forEach(element => {
+                            html += `
                         <div class="search-result-card">
                             <a href="/details/${element?.slug}">
                                 <img src="${asset_path}/${element?.post_media?.[0]?.file_name}" />
@@ -1355,19 +1405,65 @@
                             </a>
                         </div>
                     `;
-                });
-                $('.search-list').html(html);
-                $('.search-list').addClass('modal-search-list'); // Add a class to style the search list
-            } else {
-                $('.search-list').html(`<li><p class="text-center">${data.message}</p></li>`);
-            }
-        }
-    });
-});
+                        });
+                        $('.search-list').html(html);
+                        $('.search-list').addClass(
+                        'modal-search-list'); // Add a class to style the search list
+                        $('.search-list').css('visibility', 'visible');
+                    } else {
+                        $('.search-list').html(
+                            `<li><p class="text-center">${data.message}</p></li>`);
+                        $('.search-list').css('visibility', 'visible');
+                    }
+                }
+            });
+        });
 
     </script>
+
+<script>
+    (function () {
+        var s = document.createElement('script');
+        var h = document.querySelector('head') || document.body;
+        s.src = 'https://acsbapp.com/apps/app/dist/js/app.js';
+        s.async = true;
+        s.onload = function () {
+            acsbJS.init({
+                statementLink: '',
+                footerHtml: '',
+                hideMobile: false,
+                hideTrigger: false,
+                disableBgProcess: false,
+                language: 'en',
+                position: 'right',
+                leadColor: '#146FF8',
+                triggerColor: '#146FF8',
+                triggerRadius: '50%',
+                triggerPositionX: 'right',
+                triggerPositionY: 'bottom',
+                triggerIcon: 'people',
+                triggerSize: 'bottom',
+                triggerOffsetX: 20,
+                triggerOffsetY: 20,
+                mobile: {
+                    triggerSize: 'small',
+                    triggerPositionX: 'right',
+                    triggerPositionY: 'bottom',
+                    triggerOffsetX: 10,
+                    triggerOffsetY: 10,
+                    triggerRadius: '20'
+                }
+            });
+        };
+        h.appendChild(s);
+    })();
+
+</script>
+
     @yield('script')
 
 </body>
+
+
 
 </html>

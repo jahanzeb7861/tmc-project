@@ -120,7 +120,7 @@ class AppServiceProvider extends ServiceProvider
                     'label' => 'News & Media',
                     'url' => '/',
                     'subItems' => [
-                        ['label' => 'Press Release', 'url' => '/page/publication'],
+                        ['label' => 'Press Release', 'url' => '/page/press'],
                         ['label' => 'Events', 'url' => '/page/events'],
                         ['label' => 'Image Gallery', 'url' => '/page/gallery'],
                         ['label' => 'Video Gallery', 'url' => '/page/vgallery'],

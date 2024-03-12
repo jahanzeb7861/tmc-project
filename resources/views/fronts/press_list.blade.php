@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('seo_tags')
-<title>Tenders List</title>
+<title>Press List</title>
 
 <!-- Open Graph (OG) meta tags for social media -->
-<meta property="og:title" content="Tenders List">
+<meta property="og:title" content="Press List">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ route('fronts.home') }}">
 
 <!-- Twitter meta tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@yourtwitterhandle">
-<meta name="twitter:title" content="Tenders List">
+<meta name="twitter:title" content="Press List">
 @endsection
 @section('content')
 <style>
@@ -81,31 +81,25 @@
 
     <div class="container">
         <center>
-            <h1 clas="orgoheading">Tenders List</h1>
+            <h1 clas="orgoheading">Press List</h1>
         </center>
 
         <table>
             <thead>
                 <tr>
                     <th>Description</th>
-                    <th>Department</th>
-                    <th>Diary No.</th>
-                    <th>Tender Date</th>
-                    <th>Opening Date</th>
+                    <th>Date</th>
                     <th>More Details</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($tenders as $index => $tender)
+                @foreach($press as $index => $press)
                 <tr>
-                    <td>{{ $tender->description }}</td>
-                    <td>{{ $tender->department }}</td>
-                    <td>{{ $tender->diary_no }}</td>
-                    <td>{{ $tender->tender_date }}</td>
-                    <td>{{ $tender->opening_date }}</td>
+                    <td>{{ $press->description }}</td>
+                    <td>{{ $press->date }}</td>
                     <td>
-                        @if($tender->pdf_file)
-                            <a href="{{ asset('uploads/pdf/' . $tender->pdf_file) }}" download>
+                        @if($press->pdf_file)
+                            <a href="{{ asset('uploads/pdf/' . $press->pdf_file) }}" download>
                                 View PDF
                             </a>
                         @else

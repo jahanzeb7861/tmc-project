@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('pagename', 'Tender')
+@section('pagename', 'Career')
 @section('styles')
 
 @endsection
@@ -40,9 +40,9 @@
 
                 <h4>
                     @if (isset($data->id))
-                    Update Tender
+                    Update Career
                     @else
-                    Add New Tender
+                    Add New Career
                     @endif
                 </h4>
 
@@ -55,62 +55,49 @@
                     <div id="alert"></div>
                     @if (isset($data))
                     <form method="POST" class="p-5" id="addform" enctype="multipart/form-data"
-                        action="{{ route('admin.tender.update', ['id' => $data->id]) }}">
+                        action="{{ route('admin.career.update', ['id' => $data->id]) }}">
                         @method('PUT')
                         @else
                         <form method="POST" class="p-5" id="addform" enctype="multipart/form-data"
-                            action="{{ route('admin.tender.create') }}">
+                            action="{{ route('admin.career.create') }}">
                             @endif
                             @csrf
 
                             <input type="hidden" name="id" value="{{ @$data->id }}">
 
                             <div class="row">
+
                                 <div class="col-md-12 mt-3">
                                     <div class="form-group">
-                                        <label for="description" class="">Description</label>
-                                        <textarea id="description" name="description" class="form-control"
-                                            rows="4">{{ @$data->description }}</textarea>
+                                        <label for="position" class="">Position</label>
+                                        <input id="position" type="text" name="position" class="form-control"
+                                            value="{{ @$data->position }}">
                                     </div>
                                 </div>
 
                                 <div class="col-md-12 mt-3">
                                     <div class="form-group">
-                                        <label for="department" class="">Department</label>
-                                        <input id="department" type="text" name="department" class="form-control"
-                                            value="{{ @$data->department }}">
+                                        <label for="details" class="">Detail</label>
+                                        <textarea id="details" name="details" class="form-control"
+                                            rows="4">{{ @$data->details }}</textarea>
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 mt-3">
-                                    <div class="form-group">
-                                        <label for="diary_no" class="">Diary No</label>
-                                        <input id="diary_no" type="text" name="diary_no" class="form-control"
-                                            value="{{ @$data->diary_no }}">
-                                    </div>
-                                </div>
 
                                 <div class="col-md-12 mt-3">
                                     <div class="form-group">
-                                        <label for="tender_date" class="">Tender Date</label>
-                                        <input id="tender_date" type="date" name="tender_date" class="form-control"
-                                            value="{{ @$data->tender_date }}">
+                                        <label for="ad_date" class="">Advertisement Date</label>
+                                        <input id="ad_date" type="date" name="ad_date" class="form-control"
+                                            value="{{ @$data->ad_date }}">
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 mt-3">
-                                    <div class="form-group">
-                                        <label for="opening_date" class="">Opening Date</label>
-                                        <input id="opening_date" type="date" name="opening_date" class="form-control"
-                                            value="{{ @$data->opening_date }}">
-                                    </div>
-                                </div>
 
-                                 <!-- File upload field -->
                                 <div class="col-md-12 mt-3">
                                     <div class="form-group">
-                                        <label for="pdf_file" class="">Upload PDF File</label>
-                                        <input id="pdf_file" type="file" name="pdf_file" class="form-control">
+                                        <label for="closing_date" class="">Closing Date</label>
+                                        <input id="closing_date" type="date" name="closing_date" class="form-control"
+                                            value="{{ @$data->closing_date }}">
                                     </div>
                                 </div>
 

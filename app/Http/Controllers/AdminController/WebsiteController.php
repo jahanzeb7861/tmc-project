@@ -5,10 +5,13 @@ namespace App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use App\Models\Auction;
 use App\Models\Budget;
+use App\Models\Career;
 use App\Models\HeaderCategory;
 use App\Models\HeaderPage;
+use App\Models\Map;
 use App\Models\PagesMedia;
 use App\Models\Post;
+use App\Models\Press;
 use App\Models\RelatedLink;
 use App\Models\Staff;
 use App\Models\Tender;
@@ -106,6 +109,72 @@ class WebsiteController extends Controller
         }
     }
 
+    public function viewMap()
+    {
+        try {
+            $data = Map::where('id', 2)->first();
+            // dd($data);
+            return view('admin.map.view-map', compact('data'));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    public function showMapForm()
+    {
+        try {
+            // dd(2);
+            // $data = Map::where('id', 1)->first();
+            return view('admin.map.show-map-form');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    public function storeMap(Request $request)
+    {
+        try {
+
+            // dd($request->all());
+
+            // Validation
+            $validator = Validator::make($request->all(), [
+                'file' => 'required', // Adjust the max file size as needed
+            ]);
+
+            if ($validator->fails()) {
+                $errorString = implode('<br>', $validator->errors()->all());
+                return response()->json(['status' => 'danger', 'message' => 'Validation Error', 'error' => $errorString]);
+            }
+
+            $slug = Str::slug('map', '-');
+
+            $fileName = '';
+
+            if ($request->hasFile('file')) {
+                // Generate a unique image name based on the title and current timestamp
+                $fileName = $slug . '-' . now()->format('YmdHis') . '.' . $request->file('file')->getClientOriginalExtension();
+
+                // Store the image in the uploads/content directory
+                $request->file('file')->move(public_path('uploads/content/'), $fileName);
+            }
+
+
+            // dd($fileName);
+
+            $map = Map::where('id', 2)->first();
+
+            // Create a new Post record
+            $map->update([
+                'file' => $fileName,
+            ]);
+
+            return response()->json(['status' => 'success', 'message' => 'Map successfully stored', 'data' => $map]);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'danger', 'message' => 'Something went wrong in the DB', 'error' => $th->getMessage()]);
+        }
+    }
+
 
     // viewIwantToPage
     public function viewIwantToPage()
@@ -121,6 +190,21 @@ class WebsiteController extends Controller
             //throw $th;
         }
     }
+
+    public function viewCareerPage()
+    {
+        try {
+            // dd(1);
+            // about page
+            $careers = Career::get();
+
+            // dd($careers);
+            return view('fronts.careers_list',compact('careers'));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
 
     public function updateAboutPage(Request $request, $id)
     {
@@ -217,6 +301,12 @@ class WebsiteController extends Controller
             return view('fronts.budgets_list',compact('budgets'));
         }
 
+        else if ($slug == "press") {
+            $press = Press::get();
+
+            return view('fronts.press_list',compact('press'));
+        }
+
 
         $data = HeaderPage::where('slug', $slug)->first();
 
@@ -234,6 +324,98 @@ class WebsiteController extends Controller
             return redirect()->back()->with('success', 'Related Link status updated successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to update Related Link status.');
+        }
+    }
+
+    public function viewRelatedPageForm()
+    {
+        try {
+            // $data = RelatedLink::get();
+            // dd($data);
+            return view('admin.related-links.form');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    public function storeRelatedPage(Request $request)
+    {
+        try {
+            // Validation
+            $validator = Validator::make($request->all(), [
+                'title' => 'required|max:220',
+                'url' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                $errorString = implode('<br>', $validator->errors()->all());
+                return response()->json(['status' => 'danger', 'message' => 'Validation Error', 'error' => $errorString]);
+            }
+            // Create a new Post record
+            $relatedLink = RelatedLink::create([
+                'title' => $request->input('title'),
+                'url' => $request->input('url'),
+                'website_settings_id' => 1,
+                'is_active' => 'active',
+            ]);
+
+            return response()->json(['status' => 'success', 'message' => 'Related Link successfully stored', 'data' => $relatedLink]);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'danger', 'message' => 'Something went wrong in the DB', 'error' => $th->getMessage()]);
+        }
+    }
+
+    public function viewUpdateRelatedPage($id)
+    {
+        try {
+
+            $data = Relatedlink::where('id', $id)->first();
+            return view('admin.related-links.form', compact('data'));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    public function updateRelatedPage(Request $request, $id)
+    {
+        dd(1);
+        // try {
+        //     // Validation
+        //     $validator = Validator::make($request->all(), [
+        //         'title' => 'required|max:220',
+        //         'url' => 'required',
+        //     ]);
+
+        //     if ($validator->fails()) {
+        //         $errorString = implode('<br>', $validator->errors()->all());
+        //         return response()->json(['status' => 'danger', 'message' => 'Validation Error', 'error' => $errorString]);
+        //     }
+
+        //     $page = RelatedLink::findOrFail($id);
+
+        //     // Update page record
+        //     $page->update([
+        //         'title' => $request->input('title'),
+        //         'url' => $request->input('url'),
+        //         'website_settings_id' => 1,
+        //         'is_active' => 'active',
+        //     ]);
+
+        //     return response()->json(['status' => 'success', 'message' => 'Related Link successfully Updated']);
+        // } catch (\Throwable $th) {
+        //     return response()->json(['status' => 'danger', 'message' => 'Something went wrong in the DB', 'error' => $th->getMessage()]);
+        // }
+    }
+
+    public function destoryRelatedPage($id)
+    {
+        try {
+            $page = RelatedLink::findOrFail($id);
+
+            RelatedLink::destroy($page->id);
+            return response()->json(['status' => 'success', 'message' => 'Related Link Successfully Deleted']);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 'danger', 'message' => 'Something wrong in the DB', 'error' => $th->getMessage()]);
         }
     }
 

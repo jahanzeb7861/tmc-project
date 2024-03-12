@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('pagename', 'Tender')
+@section('pagename', 'Press')
 @section('styles')
 
 @endsection
@@ -40,9 +40,9 @@
 
                 <h4>
                     @if (isset($data->id))
-                    Update Tender
+                    Update Press
                     @else
-                    Add New Tender
+                    Add New Press
                     @endif
                 </h4>
 
@@ -55,11 +55,11 @@
                     <div id="alert"></div>
                     @if (isset($data))
                     <form method="POST" class="p-5" id="addform" enctype="multipart/form-data"
-                        action="{{ route('admin.tender.update', ['id' => $data->id]) }}">
+                        action="{{ route('admin.press.update', ['id' => $data->id]) }}">
                         @method('PUT')
                         @else
                         <form method="POST" class="p-5" id="addform" enctype="multipart/form-data"
-                            action="{{ route('admin.tender.create') }}">
+                            action="{{ route('admin.press.create') }}">
                             @endif
                             @csrf
 
@@ -74,35 +74,12 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 mt-3">
-                                    <div class="form-group">
-                                        <label for="department" class="">Department</label>
-                                        <input id="department" type="text" name="department" class="form-control"
-                                            value="{{ @$data->department }}">
-                                    </div>
-                                </div>
 
                                 <div class="col-md-12 mt-3">
                                     <div class="form-group">
-                                        <label for="diary_no" class="">Diary No</label>
-                                        <input id="diary_no" type="text" name="diary_no" class="form-control"
-                                            value="{{ @$data->diary_no }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 mt-3">
-                                    <div class="form-group">
-                                        <label for="tender_date" class="">Tender Date</label>
-                                        <input id="tender_date" type="date" name="tender_date" class="form-control"
-                                            value="{{ @$data->tender_date }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 mt-3">
-                                    <div class="form-group">
-                                        <label for="opening_date" class="">Opening Date</label>
-                                        <input id="opening_date" type="date" name="opening_date" class="form-control"
-                                            value="{{ @$data->opening_date }}">
+                                        <label for="date" class="">Press Date</label>
+                                        <input id="date" type="date" name="date" class="form-control"
+                                            value="{{ @$data->date }}">
                                     </div>
                                 </div>
 

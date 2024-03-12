@@ -66,7 +66,7 @@
                                 <div id="carouselExampleControls" class="carousel slide mt-3" data-bs-ride="carousel">
                                     <div class="carousel-inner ">
                                         @foreach ($BannerPost->postMedia as $key => $media)
-                                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="object-fit: cover !important;height: 450px !important; ">
                                             <img alt="{{ $media->file_name }}"
                                                 src="{{ asset('uploads/content/' . $media->file_name) }}" alt=""
                                                 class="w-100 " />
@@ -124,7 +124,7 @@
                     @foreach ($data->bannerMedia as $key => $media)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }} ">
                         <img src="{{ asset('uploads/content/' . $media->file_name) }}" class="d-block w-100"
-                            alt="{{ $media->file_name }}">
+                            alt="{{ $media->file_name }}" style="object-fit: cover !important;height: 450px !important; ">
                     </div>
                     @endforeach
                 </div>

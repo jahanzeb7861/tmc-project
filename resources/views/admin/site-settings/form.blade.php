@@ -303,6 +303,8 @@
                 <h4 class=" ">
                     Related Links
                 </h4>
+                <a href="{{ route('admin.relatedLinks.create-form') }}" class="btn btn-success float-right">Add
+                     New</a>
             </div>
 
             <table id="zero-config" class="table dt-table-hover" style="width:100%">
@@ -310,8 +312,9 @@
                     <tr>
                         <th>Sr no</th>
                         <th>Title</th>
+                        <th>URL</th>
                         <th>Status</th>
-                        <!-- <th>Toggle Status</th> -->
+                        <th>Toggle Status</th>
                         <th>Actions</th>
                         <th>Created At</th>
 
@@ -323,6 +326,7 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ @$row->title }}</td>
+                        <td>{{ @$row->url }}</td>
                         <td>
                             <span class="badge {{ @$row->is_active === 'inactive' ? 'badge-danger' : 'badge-success' }}">
                                 {{ @$row->is_active === 'inactive' ? 'InActive' : 'Active' }}
@@ -338,6 +342,16 @@
                             </button>
                             </form>
                         </td>
+                        <td>
+                                     <a class="btn btn-info btn-sm px-2 py-1"
+                                         href="{{ route('relatedLinks.update-forms', ['id' => $row['id']]) }}">
+                                         <i class="far pt-1 fa fa-edit fa-2x"></i>
+                                     </a> |
+                                     <a href="javascript:void(0)" class="delete-record btn btn-danger btn-sm px-2  py-1"
+                                         data-route="{{ route('admin.relatedLinks.delete', ['id' => $row['id']]) }}">
+                                         <i class="fas fa-trash  pt-1 fa fa-solid fa-2x"></i>
+                                     </a>
+                                 </td>
                         <td>{{ $row->created_at }}</td>
                     </tr>
                 @endforeach

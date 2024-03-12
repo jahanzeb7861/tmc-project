@@ -70,7 +70,7 @@ class DashboardController extends Controller
                     'url' => '/news',
                     'id' => 'news',
                     'subItems' => [
-                        ['label' => 'Press Release', 'url' => '/admin/page-edit/7'],
+                        ['label' => 'Press Release', 'url' => '/admin/press_release/list'],
                         ['label' => 'Events', 'url' => '/admin/page-edit/8'],
                         ['label' => 'Image Gallery', 'url' => '/admin/page-edit/9'],
                         ['label' => 'Video Gallery', 'url' => '/admin/page-edit/10'],

@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tender extends Model
+class Press extends Model
 {
     use HasFactory;
-    protected $table = "tenders";
+    protected $table = "press";
     protected $fillable = [
         'description',
-        'department',
-        'diary_no',
-        'tender_date',
-        'opening_date',
+        'date',
         'pdf_file'
     ];
 }
