@@ -340,13 +340,13 @@
                                             <a href="/admin/press_release/list">Press Release</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/page-edit/8">Events</a>
+                                            <a href="/admin/events/list">Events</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/page-edit/9">Image Gallery</a>
+                                            <a href="/admin/i_gallery/list">Image Gallery</a>
                                         </li>
                                         <li>
-                                            <a href="/admin/page-edit/10">Video Gallery</a>
+                                            <a href="/admin/v_gallery/list">Video Gallery</a>
                                         </li>
                                     </ul>
                                 </li>

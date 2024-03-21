@@ -4,14 +4,13 @@
 ?>
 
 @extends('layouts.admin')
-@section('pagename', 'Events')
+@section('pagename', 'Video Gallery')
 @section('styles')
 
     <style>
 
     </style>
 @endsection
-
 @section('content')
 
     <div id="content" class="main-content">
@@ -19,8 +18,8 @@
             <div class="  layout-top-spacing">
 
                 <div class="align-items-center col-12 col-md-12 col-sm-12 col-xl-12 d-flex mb-3 justify-content-between">
-                    <h4 class="text-capitalize">Events List</h4>
-                    <a href="{{ route('admin.events.create-form') }}" class="btn btn-success float-right">Add
+                    <h4 class="text-capitalize">Video Gallery List</h4>
+                    <a href="{{ route('admin.v_gallery.create-form') }}" class="btn btn-success float-right">Add
                         New</a>
                 </div>
 
@@ -33,7 +32,7 @@
                                 <tr>
                                     <th>Sr no</th>
                                     <th>Title</th>
-                                    <th>Image</th>
+                                    <th>Video URL</th>
                                     <th>Actions</th>
                                     <th>Created At</th>
 
@@ -46,23 +45,24 @@
                                         <td>{{ $row->title }}</td>
 
                                         <td>
-                                            @if (!empty($row->eventMedia))
-                                                <img alt="{{ @$row->eventMedia[0]->file_name }}"
-                                                    src="{{ asset('uploads/content/' . @$row->eventMedia[0]->file_name) }}"
+                                            {{ $row->address }}
+                                            <!-- @if (!empty($row->videoGalleryMedia))
+                                                <img alt="{{ @$row->videoGalleryMedia[0]->file_name }}"
+                                                    src="{{ asset('uploads/content/' . @$row->videoGalleryMedia[0]->file_name) }}"
                                                     class="img-fluid"  style="width: 100%;"/>
                                             @else
                                                 <img alt="" src="{{ asset('uploads/website/logo.png') }}"
                                                     class="img-fluid" />
-                                            @endif
+                                            @endif -->
                                         </td>
                                         <td>
                                             <a class="btn btn-info btn-sm px-2 py-1"
-                                                href="{{ route('admin.events.update-form', ['id' => $row['id']]) }}">
+                                                href="{{ route('admin.v_gallery.update-form', ['id' => $row['id']]) }}">
                                                 <i class="far pt-1 fa fa-edit fa-2x"></i>
                                             </a> |
                                             <a href="javascript:void(0)"
                                                 class="delete-record btn btn-danger btn-sm px-2  py-1"
-                                                data-route="{{ route('admin.events.delete', ['id' => $row['id']]) }}">
+                                                data-route="{{ route('admin.v_gallery.delete', ['id' => $row['id']]) }}">
                                                 <i class="fas fa-trash  pt-1 fa fa-solid fa-2x"></i>
                                             </a>
                                         </td>

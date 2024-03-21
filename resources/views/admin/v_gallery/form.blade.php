@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('pagename', 'Event')
+@section('pagename', 'Video Gallery')
 @section('styles')
 
 @endsection
@@ -19,9 +19,9 @@
 
                     <h4>
                         @if (isset($data->id))
-                            Update Event
+                            Update Video Gallery
                         @else
-                            Add New Event
+                            Add New Video Gallery
                         @endif
                     </h4>
 
@@ -34,18 +34,18 @@
                         <div id="alert"></div>
                         @if (isset($data))
                             <form method="PUT" class="p-5" id="addform" enctype="multipart/form-data"
-                                action="{{ route('admin.events.update', ['id' => $data->id]) }}">
+                                action="{{ route('admin.v_gallery.update', ['id' => $data->id]) }}">
                                 @method('PUT')
                             @else
                                 <form method="POST" class="p-5" id="addform" enctype="multipart/form-data"
-                                    action="{{ route('admin.events.store', ['type' => 'menu']) }}">
+                                    action="{{ route('admin.v_gallery.store', ['type' => 'menu']) }}">
                         @endif
                         @CSRF
 
                         <input type="hidden" name="id" value="{{ @$data->id }}">
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <div class="custom-file-container" data-upload-id="mySecondImage">
                                     <label>Upload (Allow Multiple)
                                         <a href="javascript:void(0)" class="custom-file-container__image-clear"
@@ -60,7 +60,7 @@
                                 </div>
                                 @if (isset($data))
                                     <div class="image-list">
-                                        @foreach ($data->eventMedia as $media)
+                                        @foreach ($data->videoGalleryMedia as $media)
                                             <div class="form-media-box media-{{ $media->id }}">
                                                 <img src="{{ asset('uploads/content/' . $media->file_name) }}" />
                                                 <div class="media-toolbar">
@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                 @endif
-                            </div>
+                            </div> -->
 
                             <div class="col-md-12 mt-3">
                                 <div class="form-group">
@@ -92,6 +92,15 @@
                                         value="{{@$data->title}}">
                                 </div>
                             </div>
+
+                            <div class="col-md-12 mt-3">
+                                <div class="form-group">
+                                    <label for="address" class=""> Video URL</label>
+                                    <input id="address" type="text" name="address" class="form-control"
+                                        value="{{@$data->address}}">
+                                </div>
+                            </div>
+
 
 
                             <div class="col-md-12 mt-3" style="display: none;">

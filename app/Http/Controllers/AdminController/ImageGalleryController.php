@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
-use App\Models\Event;
-use App\Models\EventsMedia;
+use App\Models\ImageGallery;
+use App\Models\ImageGalleryMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class EventsController extends Controller
+class ImageGalleryController extends Controller
 {
     public function viewForm()
     {
         try {
-            return view('admin.events.form');
+            return view('admin.i_gallery.form');
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -23,8 +23,8 @@ class EventsController extends Controller
     public function viewList()
     {
         try {
-            $data = Event::orderBy('id', 'DESC')->get();
-            return view('admin.events.list', compact('data'));
+            $data = ImageGallery::orderBy('id', 'DESC')->get();
+            return view('admin.i_gallery.list', compact('data'));
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -32,8 +32,8 @@ class EventsController extends Controller
     public function viewUpdateForm($id)
     {
         try {
-            $data = Event::with('eventMedia')->where('id', $id)->first();
-            return view('admin.events.form', compact('data'));
+            $data = ImageGallery::with('imageGalleryMedia')->where('id', $id)->first();
+            return view('admin.i_gallery.form', compact('data'));
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -52,10 +52,9 @@ class EventsController extends Controller
             // Create Slug name
             $slug = Str::slug($request->input('title'), '-');
 
-            $event = Event::create([
+            $igallery = ImageGallery::create([
                 'title' => $request->input('title'),
             ]);
-
 
                // Save Image
                $files = $request->file('file');
@@ -63,15 +62,15 @@ class EventsController extends Controller
                foreach ($files as $key  => $files) {
                    $imageName = $slug . '-' . now()->format('YmdHis') . $key . '.webp';
                    $files->move(public_path('uploads/content/'), $imageName);
-                   EventsMedia::create([
+                   ImageGalleryMedia::create([
                        'file_name' => $imageName,
                        'path' => 'uploads/content/',
                        'type' => 'menu',
-                       'event_id' => $event->id,
+                       'image_gallery_id' => $igallery->id,
                    ]);
                }
 
-            return response()->json(['status' => 'success', 'message' => 'Event successfully stored', 'data' => $event]);
+            return response()->json(['status' => 'success', 'message' => 'Image Gallery successfully stored', 'data' => $igallery]);
         } catch (\Throwable $th) {
             return response()->json(['status' => 'danger', 'message' => 'Something went wrong in the DB', 'error' => $th->getMessage()]);
         }
@@ -90,12 +89,12 @@ class EventsController extends Controller
             // Create Slug name
             $slug = Str::slug($request->input('title'), '-');
 
-            $event = Event::where('id', $id)->update([
+            $igallery = ImageGallery::where('id', $id)->update([
                 'title' => $request->input('title'),
             ]);
 
 
-            $event = Event::where('id', $id)->first();
+            $igallery = ImageGallery::where('id', $id)->first();
 
 
             if (!empty($request->input('removeMedia'))) {
@@ -103,7 +102,7 @@ class EventsController extends Controller
 
                 foreach ($request->input('removeMedia') as $id) {
                      try {
-                    $removedFile = EventsMedia::findOrFail($id);
+                    $removedFile = ImageGalleryMedia::findOrFail($id);
                     $oldImagePath = public_path('uploads/content/'. $removedFile->file_name) ;
                     if (file_exists($oldImagePath)) {
                         unlink($oldImagePath);
@@ -123,16 +122,16 @@ class EventsController extends Controller
                 foreach ($files as $key => $file) {
                     $imageName = $slug . '-' . now()->format('YmdHis') . $key . '.webp';
                     $file->move(public_path('uploads/content/'), $imageName);
-                    EventsMedia::create([
+                    ImageGalleryMedia::create([
                         'file_name' => $imageName,
                         'path' => 'uploads/content/',
                         'type' => 'menu',
-                        'event_id' => $event->id,
+                        'image_gallery_id' => $igallery->id,
                     ]);
                 }
             }
 
-            return response()->json(['status' => 'success', 'message' => 'Event successfully updated', 'data' => $event]);
+            return response()->json(['status' => 'success', 'message' => 'Image Gallery successfully updated', 'data' => $igallery]);
         } catch (\Throwable $th) {
             return response()->json(['status' => 'danger', 'message' => 'Something went wrong in the DB', 'error' => $th->getMessage()]);
         }
@@ -141,20 +140,20 @@ class EventsController extends Controller
     {
         try {
 
-            $event = Event::findOrFail($id);
+            $igallery = ImageGallery::findOrFail($id);
 
-            $eventsMedia = EventsMedia::where('event_id', $event->id)->get();
-            foreach ($eventsMedia as $eventMedia) {
+            $imageGalleryMedia = ImageGalleryMedia::where('image_gallery_id', $igallery->id)->get();
+            foreach ($imageGalleryMedia as $galleryMedia) {
 
-                $oldImagePath = public_path('uploads/content/') . $eventMedia->file_name;
+                $oldImagePath = public_path('uploads/content/') . $galleryMedia->file_name;
                 if (file_exists($oldImagePath)) {
                     unlink($oldImagePath);
                 }
-                $eventMedia->delete();
+                $galleryMedia->delete();
             }
 
-            Event::destroy($id);
-            return response()->json(['status' => 'success', 'message' => 'Event Successfully Deleted']);
+            ImageGallery::destroy($id);
+            return response()->json(['status' => 'success', 'message' => 'Image Gallery Successfully Deleted']);
         } catch (\Throwable $th) {
             return response()->json(['status' => 'danger', 'message' => 'Something wrong in the DB', 'error' => $th->getMessage()]);
         }

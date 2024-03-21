@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('pagename', 'Event')
+@section('pagename', 'Image Gallery')
 @section('styles')
 
 @endsection
@@ -19,9 +19,9 @@
 
                     <h4>
                         @if (isset($data->id))
-                            Update Event
+                            Update Image Gallery
                         @else
-                            Add New Event
+                            Add New Image Gallery
                         @endif
                     </h4>
 
@@ -34,11 +34,11 @@
                         <div id="alert"></div>
                         @if (isset($data))
                             <form method="PUT" class="p-5" id="addform" enctype="multipart/form-data"
-                                action="{{ route('admin.events.update', ['id' => $data->id]) }}">
+                                action="{{ route('admin.i_gallery.update', ['id' => $data->id]) }}">
                                 @method('PUT')
                             @else
                                 <form method="POST" class="p-5" id="addform" enctype="multipart/form-data"
-                                    action="{{ route('admin.events.store', ['type' => 'menu']) }}">
+                                    action="{{ route('admin.i_gallery.store', ['type' => 'menu']) }}">
                         @endif
                         @CSRF
 
@@ -60,7 +60,7 @@
                                 </div>
                                 @if (isset($data))
                                     <div class="image-list">
-                                        @foreach ($data->eventMedia as $media)
+                                        @foreach ($data->imageGalleryMedia as $media)
                                             <div class="form-media-box media-{{ $media->id }}">
                                                 <img src="{{ asset('uploads/content/' . $media->file_name) }}" />
                                                 <div class="media-toolbar">

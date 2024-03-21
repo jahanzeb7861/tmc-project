@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Auction;
 use App\Models\Budget;
 use App\Models\Career;
+use App\Models\Event;
 use App\Models\HeaderCategory;
 use App\Models\HeaderPage;
+use App\Models\ImageGallery;
 use App\Models\Map;
 use App\Models\PagesMedia;
 use App\Models\Post;
@@ -17,6 +19,7 @@ use App\Models\Staff;
 use App\Models\Tender;
 use App\Models\UnionCouncil;
 use App\Models\UsefulLink;
+use App\Models\VideoGallery;
 use App\Models\WebsiteSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -306,6 +309,26 @@ class WebsiteController extends Controller
 
             return view('fronts.press_list',compact('press'));
         }
+
+
+        else if ($slug == "events") {
+            $events = Event::with('eventMedia')->get();
+
+            return view('fronts.events_list',compact('events'));
+        }
+
+        else if ($slug == "gallery") {
+            $imageGalleries = ImageGallery::with('imageGalleryMedia')->get();
+
+            return view('fronts.image_galleries_list',compact('imageGalleries'));
+        }
+
+        else if ($slug == "vgallery") {
+            $videoGalleries = VideoGallery::with('videoGalleryMedia')->get();
+
+            return view('fronts.video_galleries_list',compact('videoGalleries'));
+        }
+
 
 
         $data = HeaderPage::where('slug', $slug)->first();

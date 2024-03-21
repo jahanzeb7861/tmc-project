@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class VideoGallery extends Model
 {
     use HasFactory;
-    protected $table = "events";
+    protected $table = "video_galleries";
     protected $fillable = [
         'title',
         'slug',
@@ -20,8 +20,8 @@ class Event extends Model
         'is_publish',
     ];
 
-    public function eventMedia()
+    public function videoGalleryMedia()
     {
-        return $this->hasMany(EventsMedia::class, 'event_id', 'id');
+        return $this->hasMany(VideoGalleryMedia::class, 'video_gallery_id', 'id');
     }
 }

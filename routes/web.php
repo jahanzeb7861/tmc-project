@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminController\ContentController;
 use App\Http\Controllers\adminController\DashboardController;
 use App\Http\Controllers\AdminController\EventsController;
 use App\Http\Controllers\AdminController\HeaderController;
+use App\Http\Controllers\AdminController\ImageGalleryController;
 use App\Http\Controllers\AdminController\ListPdfController;
 use App\Http\Controllers\AdminController\MenuController;
 use App\Http\Controllers\AdminController\PostController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\AdminController\TeamController;
 use App\Http\Controllers\AdminController\TenderController;
 use App\Http\Controllers\AdminController\UnionCouncilController;
 use App\Http\Controllers\AdminController\UsersController;
+use App\Http\Controllers\AdminController\VideoGalleryController;
 use App\Http\Controllers\AdminController\WebsiteController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactController as FrontContactController;
@@ -125,6 +127,48 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
         });
     });
 
+    // EVENTS
+    Route::group(['prefix' => "events"], function () {
+        Route::get('{type}/create', [EventsController::class, 'viewForm'])->name('admin.event.show-form');;
+        Route::post('{type}/store', [EventsController::class, 'store'])->name('admin.events.store');
+        Route::get('/update/{id}', [EventsController::class, 'viewUpdateForm'])->name('admin.event.show-update-form');
+        Route::put('update/{id}', [EventsController::class, 'update'])->name('admin.event.update');
+        Route::get('/list/{type?}', [EventsController::class, 'viewList'])->name('admin.event.show-list');
+
+
+        Route::middleware(['admin'])->group(function () {
+            Route::delete('destory/{id}', [PostController::class, 'destory'])->name('admin.post.delete');
+        });
+    });
+
+    // Image Gallery
+    Route::group(['prefix' => "i_gallery"], function () {
+        Route::get('{type}/create', [ImageGalleryController::class, 'viewForm'])->name('admin.i_gallery.show-form');;
+        Route::post('{type}/store', [ImageGalleryController::class, 'store'])->name('admin.i_gallery.store');
+        Route::get('/update/{id}', [ImageGalleryController::class, 'viewUpdateForm'])->name('admin.i_gallery.show-update-form');
+        Route::put('update/{id}', [ImageGalleryController::class, 'update'])->name('admin.i_gallery.update');
+        Route::get('/list/{type?}', [ImageGalleryController::class, 'viewList'])->name('admin.i_gallery.show-list');
+
+
+        Route::middleware(['admin'])->group(function () {
+            Route::delete('destory/{id}', [PostController::class, 'destory'])->name('admin.post.delete');
+        });
+    });
+
+     // Image Gallery
+     Route::group(['prefix' => "v_gallery"], function () {
+        Route::get('{type}/create', [VideoGalleryController::class, 'viewForm'])->name('admin.v_gallery.show-form');;
+        Route::post('{type}/store', [VideoGalleryController::class, 'store'])->name('admin.v_gallery.store');
+        Route::get('/update/{id}', [VideoGalleryController::class, 'viewUpdateForm'])->name('admin.v_gallery.show-update-form');
+        Route::put('update/{id}', [VideoGalleryController::class, 'update'])->name('admin.v_gallery.update');
+        Route::get('/list/{type?}', [VideoGalleryController::class, 'viewList'])->name('admin.v_gallery.show-list');
+
+
+        Route::middleware(['admin'])->group(function () {
+            Route::delete('destory/{id}', [PostController::class, 'destory'])->name('admin.post.delete');
+        });
+    });
+
     // Header Navigation Menu Manage
     Route::group(['prefix' => "menu"], function () {
         Route::get('{type}/create', [MenuController::class, 'viewForm'])->name('admin.menu.show-form');
@@ -185,6 +229,31 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
 
         Route::delete('destory/{id}', [EventsController::class, 'destory'])->name('admin.events.delete');
     });
+
+    Route::group(['prefix' => "i_gallery", 'middleware' => 'admin'], function () {
+        Route::get('/create', [ImageGalleryController::class, 'viewForm'])->name('admin.i_gallery.create-form');
+        Route::post('/create', [ImageGalleryController::class, 'store'])->name('admin.i_gallery.create');
+
+        Route::get('/list', [ImageGalleryController::class, 'viewList'])->name('admin.i_gallery.list');
+
+        Route::get('/update/{id}', [ImageGalleryController::class, 'viewUpdateForm'])->name('admin.i_gallery.update-form');
+        Route::put('/update/{id}', [ImageGalleryController::class, 'update'])->name('admin.i_gallery.update');
+
+        Route::delete('destory/{id}', [ImageGalleryController::class, 'destory'])->name('admin.i_gallery.delete');
+    });
+
+    Route::group(['prefix' => "v_gallery", 'middleware' => 'admin'], function () {
+        Route::get('/create', [VideoGalleryController::class, 'viewForm'])->name('admin.v_gallery.create-form');
+        Route::post('/create', [VideoGalleryController::class, 'store'])->name('admin.v_gallery.create');
+
+        Route::get('/list', [VideoGalleryController::class, 'viewList'])->name('admin.v_gallery.list');
+
+        Route::get('/update/{id}', [VideoGalleryController::class, 'viewUpdateForm'])->name('admin.v_gallery.update-form');
+        Route::put('/update/{id}', [VideoGalleryController::class, 'update'])->name('admin.v_gallery.update');
+
+        Route::delete('destory/{id}', [VideoGalleryController::class, 'destory'])->name('admin.v_gallery.delete');
+    });
+
 
     Route::group(['prefix' => "team", 'middleware' => 'admin'], function () {
         Route::get('/create', [TeamController::class, 'viewForm'])->name('admin.team.create-form');
@@ -373,9 +442,9 @@ Route::get('/organogram',  [HomeController::class, 'view_chairmans'])->name('fro
 
 Route::post('/search-post', [BannerController::class, 'fetchPost'])->name('admin.banner.search');
 // Route::get('/update-titles', [PostController::class, 'decode_post_title']);
-Route::get('/events', function () {
-    return view("fronts.events");
-});
+// Route::get('/events', function () {
+//     return view("fronts.events");
+// });
 Route::get('/gallery', function () {
     return view("fronts.gallery");
 });
