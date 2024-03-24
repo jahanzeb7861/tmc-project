@@ -138,11 +138,11 @@
             let html = `
             <div class="faq-main">
                  <div class="faq-question">
-                     <input placeholder="Question" class="form-control" name="question[]" type="text">
+                     <input placeholder="list item" class="form-control" name="question[]" type="text">
                      <button type='button' class="btn btn-danger btn-sm px-2  py-1 remove-faq" > <i class="fas fa-trash  pt-1 fa fa-solid fa-2x"></i> </button>
                  </div>
                  <div class="faq-answer">
-                     <textarea placeholder="Answer" class="form-control" name="answer[]"></textarea>
+                     <textarea placeholder="list description" class="form-control" name="answer[]"></textarea>
                  </div>
              </div>
             `;

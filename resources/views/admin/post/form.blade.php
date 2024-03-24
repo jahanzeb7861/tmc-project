@@ -85,7 +85,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-12 mt-3">
+                            <!-- <div class="col-md-12 mt-3">
                                 <div class="form-group">
                                     <label for="language" class="">Language</label>
                                     <select id="language" name="language" class="form-control">
@@ -94,7 +94,7 @@
                                         </option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-md-12 mt-3">
                                 <div class="form-group">
@@ -180,27 +180,27 @@
                                     @foreach ($data->faq_details as $faq)
                                         <div class="faq-main">
                                             <div class="faq-question">
-                                                <input placeholder="Question" value="{{@$faq->question}}" class="form-control" name="question[]"
+                                                <input placeholder="list item" value="{{@$faq->question}}" class="form-control" name="question[]"
                                                     type="text">
                                                 <button type='button'
                                                     class="btn btn-danger btn-sm px-2  py-1 remove-faq"> <i
                                                         class="fas fa-trash  pt-1 fa fa-solid fa-2x"></i> </button>
                                             </div>
                                             <div class="faq-answer">
-                                                <textarea placeholder="Answer" class="form-control" name="answer[]">{{@$faq->answer}}</textarea>
+                                                <textarea placeholder="list description" class="form-control" name="answer[]">{{@$faq->answer}}</textarea>
                                             </div>
                                         </div>
                                     @endforeach
                                 @else
                                     <div class="faq-main">
                                         <div class="faq-question">
-                                            <input placeholder="Question" class="form-control" name="question[]"
+                                            <input placeholder="list item" class="form-control" name="question[]"
                                                 type="text">
                                             <button type='button' class="btn btn-danger btn-sm px-2  py-1 remove-faq"> <i
                                                     class="fas fa-trash  pt-1 fa fa-solid fa-2x"></i> </button>
                                         </div>
                                         <div class="faq-answer">
-                                            <textarea placeholder="Answer" class="form-control" name="answer[]"></textarea>
+                                            <textarea placeholder="list description" class="form-control" name="answer[]"></textarea>
                                         </div>
                                     </div>
                                 @endif
@@ -243,11 +243,11 @@
             let html = `
             <div class="faq-main">
                  <div class="faq-question">
-                     <input placeholder="Question" class="form-control" name="question[]" type="text">
+                     <input placeholder="list item" class="form-control" name="question[]" type="text">
                      <button type='button' class="btn btn-danger btn-sm px-2  py-1 remove-faq" > <i class="fas fa-trash  pt-1 fa fa-solid fa-2x"></i> </button>
                  </div>
                  <div class="faq-answer">
-                     <textarea placeholder="Answer" class="form-control" name="answer[]"></textarea>
+                     <textarea placeholder="list description" class="form-control" name="answer[]"></textarea>
                  </div>
              </div>
             `;

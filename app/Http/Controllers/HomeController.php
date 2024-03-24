@@ -53,7 +53,7 @@ class HomeController extends Controller
                     ['label' => 'Vision and Mission Statement', 'url' => '/page/vision'],
                     ['label' => 'Union Councils List', 'url' => '/page/organogram'],
                     ['label' => 'Staff', 'url' => '/page/management'],
-                    ['label' => 'Functions', 'url' => '/'],
+                    ['label' => 'Functions', 'url' => '/functions'],
                 ]
             ],
             [
@@ -90,7 +90,7 @@ class HomeController extends Controller
             ],
             [
                 'label' => 'Contact Us',
-                'url' => '/page/contact',
+                'url' => '/contact',
                 'subItems' => [
                     ['label' => 'Complaint # 1339', 'url' => 'https://1339.gos.pk/'],
                 ]

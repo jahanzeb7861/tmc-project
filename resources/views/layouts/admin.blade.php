@@ -422,11 +422,11 @@
                                 </div>
                             </a>
                             <ul class="submenu list-unstyled collapse" id="header" data-parent="#accordionExample">
-                                <li>
+                                <!-- <li>
                                     <a href="{{ route('admin.header-categories.list') }}">Manage Category </a>
-                                </li>
+                                </li> -->
                                 <li>
-                                    <a href="{{ route('admin.post.show-list', ['type' => 'menu']) }}">Manage Posts
+                                    <a href="{{ route('admin.post.show-list', ['type' => 'menu']) }}">Add Shortcuts
                                     </a>
                                 </li>
                             </ul>
@@ -449,7 +449,7 @@
                             </a>
                             <ul class="submenu list-unstyled collapse" id="home" data-parent="#accordionExample">
                                 <li>
-                                    <a href="{{ route('admin.banner.update-form') }}">Banner Setting</a>
+                                    <a href="{{ route('admin.banner.update-form') }}">Image slider</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.menu.show-list') }}">Manage Nav Menu
@@ -490,7 +490,7 @@
                                 class="dropdown-toggle">
                                 <div class="">
                                     <i class="fa fa-solid fa-table-cells-large"></i>
-                                    <span>Banner Setting</span>
+                                    <span>Image slider</span>
                                 </div>
                             </a>
                         </li> -->
