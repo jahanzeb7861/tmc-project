@@ -24,12 +24,15 @@
 
                     <div class="widget-content widget-content-area" style="overflow-x: auto; ">
                         <div id="alert"></div>
-
-                        <form method="PUT" class="p-5" id="addform" enctype="multipart/form-data"
-                            action="{{ route('admin.anouncement.update') }}">
-                            @method('PUT')
-
-                            @CSRF
+                        @if (isset($data))
+                            <form method="PUT" class="p-5" id="addform" enctype="multipart/form-data"
+                                action="{{ route('admin.anouncement.update', ['id' => $data->id]) }}">
+                                @method('PUT')
+                            @else
+                                <form method="POST" class="p-5" id="addform" enctype="multipart/form-data"
+                                    action="{{ route('admin.anouncement.create') }}">
+                        @endif
+                        @CSRF
                             <div class="row">
 
                                 <div class="col-md-12 mt-3">

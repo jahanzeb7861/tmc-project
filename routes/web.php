@@ -91,8 +91,16 @@ Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => "anouncement", 'middleware' => 'admin'], function () {
-        Route::get('/', [AnnouncementsController::class, 'index'])->name('admin.anouncement.update-form');
-        Route::put('/update', [AnnouncementsController::class, 'update'])->name('admin.anouncement.update');
+        Route::get('/', [AnnouncementsController::class, 'index'])->name('admin.anouncement.list');
+        Route::get('/update/{id}', [AnnouncementsController::class, 'viewForm'])->name('admin.anouncement.update-form');
+        Route::put('/update/{id}', [AnnouncementsController::class, 'update'])->name('admin.anouncement.update');
+
+        Route::get('/create', [AnnouncementsController::class, 'viewForm'])->name('admin.anouncement.create-form');
+        Route::post('/create', [AnnouncementsController::class, 'store'])->name('admin.anouncement.create');
+
+        Route::delete('destroy/{id}', [AnnouncementsController::class, 'destroy'])->name('admin.anouncement.delete');
+
+
     });
 
     Route::group(['prefix' => "header"], function () {

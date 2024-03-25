@@ -400,6 +400,16 @@
                                         <li>
                                             <a href="https://1339.gos.pk/">Complaint # 1339</a>
                                         </li>
+                                        <li>
+                                            <a href="{{ route('admin.contact-problem.list') }}">
+                                                Contact Problems
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('admin.contact.list') }}">
+                                                Contacts List
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -495,7 +505,7 @@
                             </a>
                         </li> -->
                         <li class="menu">
-                            <a href="{{ route('admin.anouncement.update-form') }}" aria-expanded="false"
+                            <a href="{{ route('admin.anouncement.list') }}" aria-expanded="false"
                                 class="dropdown-toggle">
                                 <div class="">
                                     <i class="fa fa-bullhorn fa-solid fas"></i>
@@ -535,7 +545,7 @@
                                 </div>
                             </a>
                         </li> -->
-                        <li class="menu">
+                        <!-- <li class="menu">
                             <a href="{{ route('admin.contact-problem.list') }}" aria-expanded="false"
                                 class="dropdown-toggle">
                                 <div class="">
@@ -551,7 +561,7 @@
                                     <span>Contacts List</span>
                                 </div>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="menu">
                             <a href="{{ route('admin.web-settings.site-form') }}" aria-expanded="false"
                                 class="dropdown-toggle">

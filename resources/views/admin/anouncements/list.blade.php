@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('pagename', 'Contact Problems')
+@section('pagename', 'Announcements')
 @section('styles')
 
     <style>
@@ -14,8 +14,8 @@
             <div class="  layout-top-spacing">
 
                 <div class="align-items-center col-12 col-md-12 col-sm-12 col-xl-12 d-flex mb-3 justify-content-between">
-                    <h4 class="text-capitalize">Contact Problems List</h4>
-                    <a href="{{ route('admin.contact-problem.create-form') }}" class="btn btn-success float-right">Add
+                    <h4 class="text-capitalize">Announcements List</h4>
+                    <a href="{{ route('admin.anouncement.create-form') }}" class="btn btn-success float-right">Add
                         New</a>
                 </div>
 
@@ -27,29 +27,27 @@
                             <thead>
                                 <tr>
                                     <th>Sr no</th>
-                                    <th>Problem</th>
-                                    <th>Email</th>
+                                    <th>Title</th>
                                     <th>Actions</th>
                                     <th>Created At</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($problems as $key => $row)
+                                @foreach ($data as $key => $row)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
 
-                                        <td>{{ $row->problem }}</td>
-                                        <td>{{ $row->email }}</td>
+                                        <td>{{ $row->title }}</td>
 
                                         <td>
                                             <a class="btn btn-info btn-sm px-2 py-1"
-                                                href="{{ route('admin.contact-problem.update-form', ['id' => $row['id']]) }}">
+                                                href="{{ route('admin.anouncement.update-form', ['id' => $row['id']]) }}">
                                                 <i class="far pt-1 fa fa-edit fa-2x"></i>
                                             </a> |
                                             <a href="javascript:void(0)"
                                                 class="delete-record btn btn-danger btn-sm px-2  py-1"
-                                                data-route="{{ route('admin.contact-problem.delete', ['id' => $row['id']]) }}">
+                                                data-route="{{ route('admin.anouncement.delete', ['id' => $row['id']]) }}">
                                                 <i class="fas fa-trash  pt-1 fa fa-solid fa-2x"></i>
                                             </a>
                                         </td>

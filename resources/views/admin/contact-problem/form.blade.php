@@ -51,6 +51,14 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-12 mt-3">
+                                <div class="form-group">
+                                    <label for="email" class="">email</label>
+                                    <input id="email" type="text" name="email" class="form-control"
+                                        value="{{ @$data->email }}">
+                                </div>
+                            </div>
+
                             <div class="col-md-12 mx-auto mt-4">
                                 <button class="btn btn-success  mt-4 mb-3 mr-3 submit-btn shadow-none" type="submit">
                                     Save Changes

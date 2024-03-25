@@ -36,6 +36,7 @@ class ContactProblemController extends Controller
             $user = auth()->user();
             $validator = Validator::make($request->all(), [
                 'problem' => 'required',
+                'email' => 'nullable'
             ]);
             if ($validator->fails()) {
                 $errorString = implode('<br>', $validator->errors()->all());
@@ -44,6 +45,7 @@ class ContactProblemController extends Controller
 
             $create = ContactProblems::create([
                 'problem' => $request->problem,
+                'email' => $request->email,
                 'user_id' => $user->id,
             ]);
             return response()->json(['status' => 'success', 'message' => 'Problem successfully stored', 'data' => $create]);
@@ -58,6 +60,7 @@ class ContactProblemController extends Controller
             // Validation
             $validator = Validator::make($request->all(), [
                 'problem' => 'required',
+                'email' => 'nullable'
             ]);
 
             if ($validator->fails()) {
@@ -65,9 +68,10 @@ class ContactProblemController extends Controller
             }
             // Check if the problem exists
             $problem = ContactProblems::findOrFail($id);
-            // Update problem 
+            // Update problem
             $problem->update([
                 'problem' => $request->problem,
+                'email' => $request->email
             ]);
             return response()->json(['status' => 'success', 'message' => 'Problem successfully updated']);
         } catch (\Throwable $th) {

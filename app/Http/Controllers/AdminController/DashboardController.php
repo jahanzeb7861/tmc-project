@@ -92,6 +92,8 @@ class DashboardController extends Controller
                     'id' => 'contact',
                     'subItems' => [
                         ['label' => 'Complaint # 1339', 'url' => 'https://1339.gos.pk/'],
+                        ['label' => 'Contact Problems', 'url' => '/admin/contact-problem/list'],
+                        ['label' => 'Contacts List', 'url' => '/admin/contacts/list'],
                     ]
                 ],
             ];

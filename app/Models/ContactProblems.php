@@ -11,6 +11,7 @@ class ContactProblems extends Model
     protected $table = "contact_problems";
     protected $fillable = [
         'problem',
+        'email',
         'user_id',
     ];
 }

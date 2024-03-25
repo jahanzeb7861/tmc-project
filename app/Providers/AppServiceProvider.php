@@ -228,9 +228,9 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('components.announcement', function ($view) {
-            $announcement = Announcement::where('is_publish', 'publish')->where('id', 1)->first();
+            $announcements = Announcement::where('is_publish', 'publish')->get();
 
-            $view->with(['announcement' => $announcement]);
+            $view->with(['announcements' => $announcements]);
         });
     }
 }
