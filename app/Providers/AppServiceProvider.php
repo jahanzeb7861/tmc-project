@@ -99,9 +99,10 @@ class AppServiceProvider extends ServiceProvider
                         ['label' => 'About Us', 'url' => '/about'],
                         ['label' => 'Chairman Message', 'url' => '/page/message'],
                         ['label' => 'Vision and Mission Statement', 'url' => '/page/vision'],
+                        ['label' => 'View Map', 'url' => '/admin/map/view'],
                         ['label' => 'Union Councils List', 'url' => '/page/organogram'],
                         ['label' => 'Staff', 'url' => '/page/management'],
-                        ['label' => 'Functions', 'url' => '/functions'],
+                        ['label' => 'Functions', 'url' => '/page/functions'],
                     ]
                 ],
                 [

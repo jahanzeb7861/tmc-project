@@ -30,4 +30,24 @@ if (!function_exists('media_post')) {
         }
         return $return;
     }
+
+    function media_postImages($type, $attr = '')
+    {
+        $contents = PostsMedia::where('type', $type)->get(); // Retrieve all records for the given type
+
+        $return = ''; // Initialize the return variable
+
+        // Loop through each retrieved record
+        foreach ($contents as $content) {
+            // Generate HTML for each image
+            if (Auth::check() && Auth::user()->role == 'admin') {
+                $return .= '<img '.$attr.' data-id="' . $content->id . '" src="' . asset('uploads/content/' . $content->file_name) . '" /><span class="edit-image-content" data-id="'.$content->id.'"><i class="fa-solid fa-pen"></i></span>';
+            } else {
+                $return .= '<img '.$attr.' data-id="' . $content->id . '" src="' . asset('uploads/content/' . $content->file_name) . '" />';
+            }
+        }
+
+        return $return;
+    }
+
 }

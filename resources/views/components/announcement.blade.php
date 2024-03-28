@@ -24,10 +24,10 @@
 
 @if (!empty(@$announcements))
 <div class="news-container order-lg-3 order-2">
-    <div id="carouselExampleControls" class="carousel slide mt-3" style="width: 260px;">
-        <div class="carousel-inner ">
+    <div id="carouselExampleControls" class="carousel slide mt-3" style="width: 260px; height: 263px;">
+        <div class="carousel-inner " style="background: antiquewhite;">
             @foreach($announcements as $key => $announcement)
-            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="object-fit: cover !important;height: 270px !important; ">
+            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="object-fit: cover !important;height: 270px !important; background: antiquewhite; ">
                 <div class="news-container order-lg-3 order-2">
                     <div class="col-sm-12 PromotionPanelMainOuterWraper mb-3">
                         <div class="col-xm-12 col-sm-12 PromoPanItem PPI-Yellow h-auto">

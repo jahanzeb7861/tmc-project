@@ -33,9 +33,10 @@ class LoginController extends Controller
                     ['label' => 'About Us', 'url' => '/about'],
                     ['label' => 'Chairman Message', 'url' => '/message'],
                     ['label' => 'Vision and Mission Statement', 'url' => '/message'],
+                    ['label' => 'View Map', 'url' => '/admin/map/view'],
                     ['label' => 'Union Councils List', 'url' => '/message'],
                     ['label' => 'Staff', 'url' => '/message'],
-                    ['label' => 'Functions', 'url' => '/functions'],
+                    ['label' => 'Functions', 'url' => '/page/functions'],
                 ]
             ],
             [

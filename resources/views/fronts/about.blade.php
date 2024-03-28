@@ -141,7 +141,7 @@
     </div>
 
     <div class="banner">
-        @php echo media_post(26,"alt='Banner Image'") @endphp
+        @php echo media_postImages('about',"alt='Banner Image'") @endphp
     </div>
 
     <div class="modal fade" id="contentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -186,7 +186,7 @@
                     <form class="mediaform" action="{{ route('front.content.update-image') }}">
                         <input type="hidden" name="media_id" class="form-control" id="media_id">
                         <div class="form-group">
-                            <input id="image" type="file" accept="images/*" name="image" class="">
+                            <input id="image" type="file" accept="image" name="image" class="">
                             <div class="user_profile_add">
                                 <img src="" class="media_previewer" id="output" />
                             </div>

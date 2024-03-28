@@ -13,6 +13,7 @@ use App\Models\ImageGallery;
 use App\Models\Map;
 use App\Models\PagesMedia;
 use App\Models\Post;
+use App\Models\PostsMedia;
 use App\Models\Press;
 use App\Models\RelatedLink;
 use App\Models\Staff;
@@ -171,6 +172,14 @@ class WebsiteController extends Controller
             $map->update([
                 'file' => $fileName,
             ]);
+
+            PostsMedia::create([
+                'file_name' => $fileName,
+                'path' => 'uploads/content/',
+                'type' => 'about',
+                'post_id' => 0,
+            ]);
+
 
             return response()->json(['status' => 'success', 'message' => 'Map successfully stored', 'data' => $map]);
         } catch (\Throwable $th) {
